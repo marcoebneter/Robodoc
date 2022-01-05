@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "t25qA2USpzV2YwBkcu7i0EnB5R/it7LcP5omJpAy42Ov2opbzwf+9TqJeKC0UUFCAiJ7dT+julOO3noFOES5yQ==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\Schule\\hospizRobo\\hospizRobo_Application\\hospizRobo_Application\\hospizRobo_Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\5.0.13\\microsoft.aspnetcore.spaservices.extensions.5.0.13.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\5.0.0\\microsoft.extensions.fileproviders.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\5.0.0\\microsoft.extensions.fileproviders.physical.5.0.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\5.0.0\\microsoft.extensions.filesystemglobbing.5.0.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
