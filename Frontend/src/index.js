@@ -1,17 +1,67 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+class TestLoginForm extends React.Component {
+  constructor(props) {
+  super(props);
+  // handle initialization activities
+  }
+  handleChangeEvents(event) {
+  //handle change events
+  }
+  handleSubmitevents(event) {
+  // handle submit events
+  }
+  handlePasswordChange(event){
+  //handle password change events
+  }
+  render() {
+  return (
+  <div className=" TestLoginForm ">
+  <form onSubmit={this.handleSubmitevents}>
+  {
+  //handle error condition
+  }
+  <label>User Name</label>
+  <input type="text" data-test="username" value={this.state.username} onChange={this.handleChangeEvents} />
+  <label>Password</label>
+  <input type="password" data-test="password" value={this.state.password} onChange={this. handlePasswordChange } />
+  <input type="submit" value="Log In" data-test="submit" />
+  </form>
+  );
+  }
+  }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+export default function Login(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  function performValidation() {
+  return username.length > 0 && password.length > 0;
+  }
+  function handleSubmit(event) {
+  event.preventDefault();
+  }
+  return (
+  <div className="Login">
+  <form onSubmit={handleSubmit}>
+  <FormGroup controlId="username" bsSize="large">
+  <ControlLabel>Username</ControlLabel>
+  <FormControl
+  autoFocus
+  type="text"
+  value={username}
+  onChange={e => setUsername(e.target.value)}
+  />
+  </FormGroup>
+  <FormGroup controlId="password" bsSize="large">
+  <ControlLabel>Password</ControlLabel>
+  <FormControl
+  value={password}
+  onChange={e => setPassword(e.target.value)}
+  type="password"
+  />
+  </FormGroup>
+  <Button block bsSize="large" disabled={!performValidation()} type="submit">
+  Login
+  </Button>
+  </form>
+  </div>
+  );
+  }
