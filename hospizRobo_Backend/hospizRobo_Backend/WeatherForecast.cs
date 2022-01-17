@@ -1,4 +1,4 @@
-namespace Application
+namespace hospizRobo_Backend
 {
     public class WeatherForecast
     {
