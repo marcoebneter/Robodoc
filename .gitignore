@@ -54,3 +54,4 @@ dkms.conf
 bin/
 obj/
 *.bak*
+node_modules/
