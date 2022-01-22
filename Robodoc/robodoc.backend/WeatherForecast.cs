@@ -1,4 +1,4 @@
-namespace hospizRobo_Backend
+namespace robodoc.backend
 {
     public class WeatherForecast
     {
