@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "robodoc.frontend", "robodoc.frontend\robodoc.frontend.esproj", "{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "robodoc.backend", "robodoc.backend\robodoc.backend.csproj", "{76F78E4E-B916-4841-8AEE-A7766C61D263}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robodoc", "Robodoc\Robodoc.csproj", "{CAABDEFF-DDC6-4B0C-B82C-D4AC57047240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,21 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DF6FFB9-9B3D-4B76-91F7-9C7F30314771}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{76F78E4E-B916-4841-8AEE-A7766C61D263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76F78E4E-B916-4841-8AEE-A7766C61D263}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76F78E4E-B916-4841-8AEE-A7766C61D263}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76F78E4E-B916-4841-8AEE-A7766C61D263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAABDEFF-DDC6-4B0C-B82C-D4AC57047240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAABDEFF-DDC6-4B0C-B82C-D4AC57047240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAABDEFF-DDC6-4B0C-B82C-D4AC57047240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAABDEFF-DDC6-4B0C-B82C-D4AC57047240}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2DC55C3A-9141-49FE-8B53-E9B22F78412A}
+		SolutionGuid = {D74768F4-E09A-4000-AE5E-5E07D560C6A3}
 	EndGlobalSection
 EndGlobal
