@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Robodoc.Models;
 
 namespace Robodoc.Data.Models
 {
@@ -18,8 +19,8 @@ namespace Robodoc.Data.Models
         public Patient Patient { get; set; }
 
         [ForeignKey(nameof(Zustaendigkeit))]
-        public Guid PersonalId { get; set;}
-        public Personal Zustaendigkeit { get; set;}
+        public string PersonalId { get; set;}
+        public ApplicationUser Zustaendigkeit { get; set;}
 
         [ForeignKey(nameof(Therapie))]
         public Guid TherapieId { get; set; }

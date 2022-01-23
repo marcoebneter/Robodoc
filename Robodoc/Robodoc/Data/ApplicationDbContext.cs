@@ -9,7 +9,6 @@ namespace Robodoc.Data
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public DbSet<Person> Persons => Set<Person>();
         public DbSet<Patient> Patients => Set<Patient>();
         public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)

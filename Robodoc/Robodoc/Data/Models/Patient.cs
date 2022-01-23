@@ -8,12 +8,12 @@ namespace Robodoc.Data.Models
         [Key]
         public Guid Id { get; set; }
         [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Vorname { get; set; }
+        [Required]
         public DateTime EintrittDatum { get; set; }
         public DateTime? AustrittDatum { get; set; }
         public string? Anamnese { get; set; }
-
-        [ForeignKey(nameof(Person))]
-        public Guid PersonId { get; set; }
-        public Person Person { get; set; }
     }
 }

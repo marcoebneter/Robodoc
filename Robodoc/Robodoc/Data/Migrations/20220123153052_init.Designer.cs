@@ -12,8 +12,8 @@ using Robodoc.Data;
 namespace Robodoc.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220123150949_Initial")]
-    partial class Initial
+    [Migration("20220123153052_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -317,22 +317,6 @@ namespace Robodoc.Data.Migrations
                     b.Property<DateTime>("EintrittDatum")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Person", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -343,7 +327,24 @@ namespace Robodoc.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Robodoc.Data.Models.Personal", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Personals");
                 });
 
             modelBuilder.Entity("Robodoc.Models.ApplicationUser", b =>
@@ -462,15 +463,15 @@ namespace Robodoc.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Robodoc.Data.Models.Patient", b =>
+            modelBuilder.Entity("Robodoc.Data.Models.Personal", b =>
                 {
-                    b.HasOne("Robodoc.Data.Models.Person", "Person")
+                    b.HasOne("Robodoc.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("PersonId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Person");
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
