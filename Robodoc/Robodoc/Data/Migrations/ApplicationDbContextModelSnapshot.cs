@@ -17,7 +17,7 @@ namespace Robodoc.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "5.0.0-rc.1.20417.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -38,7 +38,7 @@ namespace Robodoc.Data.Migrations
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasMaxLength(50000)
+                        .HasMaxLength(50980)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -75,6 +75,7 @@ namespace Robodoc.Data.Migrations
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.Key", b =>
                 {
                     b.Property<string>("Id")
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Algorithm")
@@ -87,6 +88,7 @@ namespace Robodoc.Data.Migrations
 
                     b.Property<string>("Data")
                         .IsRequired()
+                        .HasMaxLength(50980)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("DataProtected")
@@ -96,6 +98,7 @@ namespace Robodoc.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Use")
+                        .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Version")
@@ -105,7 +108,7 @@ namespace Robodoc.Data.Migrations
 
                     b.HasIndex("Use");
 
-                    b.ToTable("Keys");
+                    b.ToTable("Keys", (string)null);
                 });
 
             modelBuilder.Entity("Duende.IdentityServer.EntityFramework.Entities.PersistedGrant", b =>
@@ -127,7 +130,7 @@ namespace Robodoc.Data.Migrations
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasMaxLength(50000)
+                        .HasMaxLength(50980)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -151,8 +154,6 @@ namespace Robodoc.Data.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Key");
-
-                    b.HasIndex("ConsumedTime");
 
                     b.HasIndex("Expiration");
 
@@ -300,51 +301,6 @@ namespace Robodoc.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Robodoc.Data.Models.Patient", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Anamnese")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("AustrittDatum")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("EintrittDatum")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Vorname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Personal", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Personals");
-                });
-
             modelBuilder.Entity("Robodoc.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -459,17 +415,6 @@ namespace Robodoc.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Personal", b =>
-                {
-                    b.HasOne("Robodoc.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
