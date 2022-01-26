@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Robodoc.Data.Models
 {
@@ -19,7 +21,7 @@ namespace Robodoc.Data.Models
 
         [ForeignKey(nameof(Zustaendigkeit))]
         public string PersonalId { get; set;}
-        public ApplicationUser Zustaendigkeit { get; set;}
+        public IdentityUser Zustaendigkeit { get; set;}
 
         [ForeignKey(nameof(Therapie))]
         public Guid TherapieId { get; set; }
