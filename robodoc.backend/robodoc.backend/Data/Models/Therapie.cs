@@ -5,7 +5,7 @@ namespace Robodoc.Data.Models
     public class Therapie
     {
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         [Required]
         public string Name { get; set; }
     }

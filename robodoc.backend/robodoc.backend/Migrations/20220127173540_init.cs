@@ -49,6 +49,42 @@ namespace robodoc.backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoboActivities",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoboActivities", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoboOrts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoboOrts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Verabreichungsprozesse",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Verabreichungsprozesse", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -154,6 +190,52 @@ namespace robodoc.backend.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RoboActivityStatus",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    OrtId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ActivityId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoboActivityStatus", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoboActivityStatus_RoboActivities_ActivityId",
+                        column: x => x.ActivityId,
+                        principalTable: "RoboActivities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoboActivityStatus_RoboOrts_OrtId",
+                        column: x => x.OrtId,
+                        principalTable: "RoboOrts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Medikamente",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Einheit = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VerabreichungsprozessId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medikamente", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Medikamente_Verabreichungsprozesse_VerabreichungsprozessId",
+                        column: x => x.VerabreichungsprozessId,
+                        principalTable: "Verabreichungsprozesse",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -192,6 +274,21 @@ namespace robodoc.backend.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medikamente_VerabreichungsprozessId",
+                table: "Medikamente",
+                column: "VerabreichungsprozessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoboActivityStatus_ActivityId",
+                table: "RoboActivityStatus",
+                column: "ActivityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoboActivityStatus_OrtId",
+                table: "RoboActivityStatus",
+                column: "OrtId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -212,10 +309,25 @@ namespace robodoc.backend.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Medikamente");
+
+            migrationBuilder.DropTable(
+                name: "RoboActivityStatus");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Verabreichungsprozesse");
+
+            migrationBuilder.DropTable(
+                name: "RoboActivities");
+
+            migrationBuilder.DropTable(
+                name: "RoboOrts");
         }
     }
 }

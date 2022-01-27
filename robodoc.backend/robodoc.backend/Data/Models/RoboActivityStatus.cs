@@ -5,15 +5,16 @@ namespace robodoc.backend.Data.Models
 {
     public class RoboActivityStatus
     {
+        public enum Ort;
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         [Required]
         public int Status { get; set; }
         [ForeignKey(nameof(RoboOrt))]
-        public Guid RoomId { get; set; }
+        public string OrtId { get; set; }
         public RoboOrt RoboOrt { get; set; }
         [ForeignKey(nameof(RoboActivity))]
-        public Guid ActivityId { get; set; }
+        public string ActivityId { get; set; }
         public RoboActivity RoboActivity { get; set; }
     }
 }

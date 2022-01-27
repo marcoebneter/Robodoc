@@ -12,7 +12,7 @@ using robodoc.backend.Data;
 namespace robodoc.backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220126183822_init")]
+    [Migration("20220127173540_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,6 +226,97 @@ namespace robodoc.backend.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoboActivities");
+                });
+
+            modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivityStatus", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ActivityId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OrtId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("OrtId");
+
+                    b.ToTable("RoboActivityStatus");
+                });
+
+            modelBuilder.Entity("robodoc.backend.Data.Models.RoboOrt", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoboOrts");
+                });
+
+            modelBuilder.Entity("Robodoc.Data.Models.Medikament", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Einheit")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VerabreichungsprozessId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VerabreichungsprozessId");
+
+                    b.ToTable("Medikamente");
+                });
+
+            modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Verabreichungsprozesse");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -275,6 +366,51 @@ namespace robodoc.backend.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivityStatus", b =>
+                {
+                    b.HasOne("robodoc.backend.Data.Models.RoboActivity", "RoboActivity")
+                        .WithMany("ActivityStatus")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("robodoc.backend.Data.Models.RoboOrt", "RoboOrt")
+                        .WithMany("ActivityStatus")
+                        .HasForeignKey("OrtId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoboActivity");
+
+                    b.Navigation("RoboOrt");
+                });
+
+            modelBuilder.Entity("Robodoc.Data.Models.Medikament", b =>
+                {
+                    b.HasOne("Robodoc.Data.Models.Verabreichungsprozess", "Verabreichungsprozess")
+                        .WithMany("Medikamente")
+                        .HasForeignKey("VerabreichungsprozessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Verabreichungsprozess");
+                });
+
+            modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivity", b =>
+                {
+                    b.Navigation("ActivityStatus");
+                });
+
+            modelBuilder.Entity("robodoc.backend.Data.Models.RoboOrt", b =>
+                {
+                    b.Navigation("ActivityStatus");
+                });
+
+            modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
+                {
+                    b.Navigation("Medikamente");
                 });
 #pragma warning restore 612, 618
         }

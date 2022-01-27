@@ -5,15 +5,17 @@ namespace Robodoc.Data.Models
 {
     public class MedikamentTherapie
     {
+        [Key]
+        public string Id { get; set; }
         [Required]
         public int Menge { get; set; }
 
         [ForeignKey(nameof(Medikament))]
-        public Guid MedikamentId { get; set; }
+        public string MedikamentId { get; set; }
         public Medikament Medikament { get; set; }
 
         [ForeignKey(nameof(Therapie))]
-        public Guid TherapieId { get; set; }
+        public string TherapieId { get; set; }
         public Therapie Therapie { get; set; }
     }
 }
