@@ -2,7 +2,7 @@
 
 namespace robodoc.backend.Data.Models
 {
-    public class RoboOrt
+    public class RoboActivity
     {
         [Key]
         public string Id { get; set; }
