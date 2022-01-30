@@ -10,13 +10,13 @@ namespace robodoc.backend.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        //public DbSet<Verabreichungsprozess> Verabreichungsprozesse => Set<Verabreichungsprozess>();
-        //public DbSet<Medikament> Medikamente => Set<Medikament>();
-        //public DbSet<MedikamentTherapie> MedikamentTherapien => Set<MedikamentTherapie>();
-        //public DbSet<Therapie> Therapien => Set<Therapie>();
-        //public DbSet<Patient> Patienten => Set<Patient>();
-        //public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
-        //public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
+        public DbSet<Verabreichungsprozess> Verabreichungsprozesse => Set<Verabreichungsprozess>();
+        public DbSet<Medikament> Medikamente => Set<Medikament>();
+        public DbSet<MedikamentTherapie> MedikamentTherapien => Set<MedikamentTherapie>();
+        public DbSet<Therapie> Therapien => Set<Therapie>();
+        public DbSet<Patient> Patienten => Set<Patient>();
+        public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
+        public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
         public DbSet<RoboOrt> RoboOrts => Set<RoboOrt>();
         public DbSet<RoboActivity> RoboActivities => Set<RoboActivity>();
         public DbSet<RoboActivityStatus> RoboActivityStatus => Set<RoboActivityStatus>();
@@ -28,9 +28,30 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Medikament>()
-            //    .HasOne(e => e.Verabreichungsprozess)
-            //    .WithMany(v => v.Medikamente);
+            //modelBuilder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal()); // TODO evt delete
+            modelBuilder.Entity<TherapieverfahrenDurchfuehrung>()
+                .HasOne(t => t.Personal);
+            modelBuilder.Entity<Therapieverfahren>()
+                .HasOne(t => t.Zustaendigkeit);
+            modelBuilder.Entity<TherapieverfahrenDurchfuehrung>()
+                .HasOne(t => t.Therapieverfahren)
+                .WithMany(t => t.TherapieverfahrenDurchfuehrungen)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Therapieverfahren>()
+                .HasOne(p => p.Patient)
+                .WithMany(t => t.Therapieverfahren);
+            modelBuilder.Entity<Therapieverfahren>()
+                .HasOne(t => t.Therapie)
+                .WithMany(t => t.Therapieverfahren);
+            modelBuilder.Entity<MedikamentTherapie>()
+                .HasOne(t => t.Therapie)
+                .WithMany(m => m.MedikamentTherapies);
+            modelBuilder.Entity<Medikament>()
+                .HasOne(e => e.Verabreichungsprozess)
+                .WithMany(v => v.Medikamente);
+            modelBuilder.Entity<MedikamentTherapie>()
+                .HasOne(m => m.Medikament)
+                .WithMany(m => m.MedikamentTherapies);
             modelBuilder.Entity<RoboActivityStatus>()
                 .HasOne(a => a.RoboOrt)
                 .WithMany(o => o.ActivityStatuses);

@@ -26,5 +26,7 @@ namespace Robodoc.Data.Models
         [ForeignKey(nameof(Therapie))]
         public string TherapieId { get; set; }
         public Therapie Therapie { get; set; }
+
+        public IEnumerable<TherapieverfahrenDurchfuehrung> TherapieverfahrenDurchfuehrungen { get; set; }
     }
 }

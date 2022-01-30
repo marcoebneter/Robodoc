@@ -15,5 +15,7 @@ namespace Robodoc.Data.Models
         [ForeignKey(nameof(Verabreichungsprozess))]
         public string VerabreichungsprozessId { get; set; }
         public Verabreichungsprozess Verabreichungsprozess { get; set; }
+
+        public IEnumerable<MedikamentTherapie> MedikamentTherapies  { get; set; }
     }
 }

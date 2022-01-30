@@ -15,5 +15,7 @@ namespace Robodoc.Data.Models
         public DateTime EintrittDatum { get; set; }
         public DateTime? AustrittDatum { get; set; }
         public string? Anamnese { get; set; }
+
+        public IEnumerable<Therapieverfahren> Therapieverfahren { get; set; }
     }
 }
