@@ -1,15 +1,24 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;using robodoc.backend;
+using robodoc.backend.Common;
 using robodoc.backend.Data;
+using robodoc.backend.Repositories;
+using robodoc.backend.Services;
+using robodoc.backend.Services.Interfaces;
+using Robodoc.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(config =>
+{
+    config.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddTransient<IMedikamentService, MedikamentService>();
+builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 
 builder.Services.AddControllers();
 
