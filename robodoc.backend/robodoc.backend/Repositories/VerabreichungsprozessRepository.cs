@@ -17,7 +17,7 @@ namespace robodoc.backend.Repositories
 
         public Verabreichungsprozess Get(string id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Verabreichungsprozesse.First(v => v.Id == id);
         }
 
         public void Delete(string id)

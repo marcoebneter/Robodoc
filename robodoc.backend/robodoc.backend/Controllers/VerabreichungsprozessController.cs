@@ -26,27 +26,9 @@ namespace robodoc.backend.Controllers
 
         // GET api/<VerabreichungsprozessController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Verabreichungsprozess Get(string id)
         {
-            return "value";
-        }
-
-        // POST api/<VerabreichungsprozessController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<VerabreichungsprozessController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<VerabreichungsprozessController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return _service.GetVerabreichungsprozessById(id);
         }
     }
 }
