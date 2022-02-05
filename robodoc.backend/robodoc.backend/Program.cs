@@ -17,6 +17,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(config =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddTransient<IVerabreichungsprozessService, VerabreichungsprozessService>();
+builder.Services.AddScoped<IRepository<Verabreichungsprozess>, VerabreichungsprozessRepository>();
+
 builder.Services.AddTransient<IMedikamentService, MedikamentService>();
 builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 
