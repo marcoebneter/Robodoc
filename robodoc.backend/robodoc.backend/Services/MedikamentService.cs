@@ -20,7 +20,7 @@ namespace robodoc.backend.Services
 
         public Medikament GetMedikamentById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.Get(id);
         }
     }
 }

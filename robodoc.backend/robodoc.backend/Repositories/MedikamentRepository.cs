@@ -9,32 +9,56 @@ namespace robodoc.backend.Repositories
     {
         public MedikamentRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-            
+
         }
 
         public IEnumerable<Medikament> GetAll()
         {
-            return _dbContext.Medikamente;
+            return _dbContext.Medikamente.Include(m => m.Verabreichungsprozess);
         }
 
         public Medikament Get(string id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Medikamente.Include(m => m.Verabreichungsprozess).First(m => m.Id == id);
         }
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            var medikament = _dbContext.Medikamente.First(m => m.Id == id);
+            _dbContext.Remove(medikament);
+            _dbContext.SaveChanges();
         }
 
-        public void Insert(Medikament entity)
+        public Medikament Insert(Medikament entity)
         {
-            throw new NotImplementedException();
+            var newMedikament = new Medikament
+            {
+                Id = new Guid().ToString(),
+                Name = entity.Name,
+                Einheit = entity.Einheit,
+                VerabreichungsprozessId = entity.VerabreichungsprozessId
+            };
+            _dbContext.Medikamente.Add(newMedikament);
+            _dbContext.SaveChanges();
+            return newMedikament;
         }
 
-        public void Update(Medikament entity)
+        public Medikament Update(Medikament entity)
         {
-            throw new NotImplementedException();
+            if (entity == null || entity.Id == null)
+            {
+                return entity;
+            }
+
+            var oldMedikament = _dbContext.Medikamente.First(m => m.Id == entity.Id);
+            oldMedikament.Name = entity.Name;
+            oldMedikament.Einheit = entity.Einheit;
+            oldMedikament.VerabreichungsprozessId = entity.VerabreichungsprozessId;
+            oldMedikament.Verabreichungsprozess =
+                _dbContext.Verabreichungsprozesse.FirstOrDefault(v => v.Id == entity.VerabreichungsprozessId);
+            _dbContext.Update(oldMedikament);
+            _dbContext.SaveChanges();
+            return oldMedikament;
         }
     }
 }

@@ -25,9 +25,9 @@ namespace robodoc.backend.Controllers
 
         // GET api/<MedikamentController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Medikament Get(string id)
         {
-            return "value";
+            return _service.GetMedikamentById(id);
         }
 
         // POST api/<MedikamentController>
@@ -44,7 +44,7 @@ namespace robodoc.backend.Controllers
 
         // DELETE api/<MedikamentController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
         }
     }
