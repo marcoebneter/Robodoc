@@ -9,7 +9,6 @@ namespace robodoc.backend.Repositories
     {
         public MedikamentRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-
         }
 
         public IEnumerable<Medikament> GetAll()
