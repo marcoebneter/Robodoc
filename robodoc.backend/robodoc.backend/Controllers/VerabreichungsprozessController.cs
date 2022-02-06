@@ -26,7 +26,7 @@ namespace robodoc.backend.Controllers
 
         // GET api/<VerabreichungsprozessController>/5
         [HttpGet("{id}")]
-        public Verabreichungsprozess Get(string id)
+        public IEnumerable<Verabreichungsprozess> Get(string id)
         {
             return _service.GetVerabreichungsprozessById(id);
         }
