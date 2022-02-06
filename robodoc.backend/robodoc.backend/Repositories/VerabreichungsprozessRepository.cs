@@ -15,9 +15,14 @@ namespace robodoc.backend.Repositories
             return _dbContext.Verabreichungsprozesse;
         }
 
-        public Verabreichungsprozess Get(string id)
+        public IEnumerable<Verabreichungsprozess> Get(string id)
         {
-            return _dbContext.Verabreichungsprozesse.First(v => v.Id == id);
+            return _dbContext.Verabreichungsprozesse.Where(v => v.Id.Equals(v));
+        }
+
+        public void Delete(Verabreichungsprozess entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -25,12 +30,12 @@ namespace robodoc.backend.Repositories
             throw new NotImplementedException();
         }
 
-        public void Insert(Verabreichungsprozess entity)
+        public Verabreichungsprozess Insert(Verabreichungsprozess entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Verabreichungsprozess entity)
+        public Verabreichungsprozess Update(Verabreichungsprozess entity)
         {
             throw new NotImplementedException();
         }

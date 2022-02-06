@@ -18,7 +18,7 @@ namespace robodoc.backend.Services
 
         public Verabreichungsprozess GetVerabreichungsprozessById(string id)
         {
-            return _repository.Get(id);
+            return _repository.Get(id).FirstOrDefault();
         }
     }
 }

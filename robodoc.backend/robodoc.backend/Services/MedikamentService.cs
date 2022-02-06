@@ -20,7 +20,7 @@ namespace robodoc.backend.Services
 
         public Medikament GetMedikamentById(string id)
         {
-            return _repository.Get(id);
+            return _repository.Get(id).FirstOrDefault();
         }
     }
 }

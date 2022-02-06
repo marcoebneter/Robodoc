@@ -16,26 +16,54 @@ namespace robodoc.backend.Repositories
             return _dbContext.Patienten;
         }
 
-        public Patient Get(string id)
+        public IEnumerable<Patient> Get(string id)
         {
-            return _dbContext.Patienten.First(p => p.Id == id);
+            return _dbContext.Patienten.Where(p => p.Id.Equals(p));
+        }
+
+        public void Delete(Patient entity)
+        {
+            _dbContext.Patienten.Remove(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(string id)
         {
-            var patient = _dbContext.Patienten.First(p => p.Id == id);
-            _dbContext.Remove(patient);
-            _dbContext.SaveChanges();
+            Delete(Get(id).FirstOrDefault());
         }
 
         public Patient Insert(Patient entity)
         {
-            throw new NotImplementedException();
+            var newPatient = new Patient()
+            {
+                Id = new Guid().ToString(),
+                Name = entity.Name,
+                Vorname = entity.Vorname,
+                Anamnese = entity.Anamnese,
+                EintrittDatum = entity.EintrittDatum,
+                AustrittDatum = entity.AustrittDatum,
+            };
+            _dbContext.Patienten.Add(newPatient);
+            _dbContext.SaveChanges();
+            return newPatient;
         }
 
         public Patient Update(Patient entity)
         {
-            throw new NotImplementedException();
+            if (entity == null || entity.Id == null)
+            {
+                return entity;
+            }
+
+            var oldPatient = Get(entity.Id).FirstOrDefault();
+            oldPatient.Name = entity.Name;
+            oldPatient.Vorname = entity.Vorname;
+            oldPatient.Anamnese = entity.Anamnese;
+            oldPatient.EintrittDatum = entity.EintrittDatum;
+            oldPatient.AustrittDatum = entity.AustrittDatum;
+            _dbContext.Patienten.Update(oldPatient);
+            _dbContext.SaveChanges();
+            return oldPatient;
         }
     }
 }

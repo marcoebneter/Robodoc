@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using robodoc.backend.Common;
 using robodoc.backend.Data;
 using Robodoc.Data.Models;
@@ -13,19 +14,26 @@ namespace robodoc.backend.Repositories
 
         public IEnumerable<Medikament> GetAll()
         {
-            return _dbContext.Medikamente.Include(m => m.Verabreichungsprozess);
+            return _dbContext.Medikamente
+                .Include(m => m.Verabreichungsprozess);
         }
 
-        public Medikament Get(string id)
+        public IEnumerable<Medikament> Get(string id)
         {
-            return _dbContext.Medikamente.Include(m => m.Verabreichungsprozess).First(m => m.Id == id);
+            return _dbContext.Medikamente
+                .Include(m => m.Verabreichungsprozess)
+                .Where(m => m.Id.Equals(m));
+        }
+
+        public void Delete(Medikament entity)
+        {
+            _dbContext.Medikamente.Remove(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(string id)
         {
-            var medikament = _dbContext.Medikamente.First(m => m.Id == id);
-            _dbContext.Remove(medikament);
-            _dbContext.SaveChanges();
+            Delete(Get(id).FirstOrDefault());
         }
 
         public Medikament Insert(Medikament entity)
@@ -49,13 +57,13 @@ namespace robodoc.backend.Repositories
                 return entity;
             }
 
-            var oldMedikament = _dbContext.Medikamente.First(m => m.Id == entity.Id);
+            var oldMedikament = Get(entity.Id).FirstOrDefault();
             oldMedikament.Name = entity.Name;
             oldMedikament.Einheit = entity.Einheit;
             oldMedikament.VerabreichungsprozessId = entity.VerabreichungsprozessId;
             oldMedikament.Verabreichungsprozess =
                 _dbContext.Verabreichungsprozesse.FirstOrDefault(v => v.Id == entity.VerabreichungsprozessId);
-            _dbContext.Update(oldMedikament);
+            _dbContext.Medikamente.Update(oldMedikament);
             _dbContext.SaveChanges();
             return oldMedikament;
         }
