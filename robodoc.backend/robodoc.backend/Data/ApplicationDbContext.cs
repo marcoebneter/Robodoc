@@ -28,7 +28,7 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal()); // TODO evt delete
+            builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
             builder.Entity<TherapieverfahrenDurchfuehrung>()
                 .HasOne(t => t.Personal);
             builder.Entity<Therapieverfahren>()
