@@ -4,9 +4,9 @@ using Robodoc.Data.Models;
 
 namespace robodoc.backend
 {
-    public class SampleData
+    public sealed class SampleData
     {
-        public SampleData(ModelBuilder modelBuilder)
+        public SampleData(ModelBuilder builder)
         {
             var verabreichung = new List<Verabreichungsprozess>();
             var orte = new List<RoboOrt>();
@@ -31,7 +31,7 @@ namespace robodoc.backend
 
             foreach (Verabreichungsprozess verabproz in verabreichung)
             {
-                modelBuilder.Entity<Verabreichungsprozess>().HasData(verabproz);
+                builder.Entity<Verabreichungsprozess>().HasData(verabproz);
             }
 
             #region Orte
@@ -45,7 +45,7 @@ namespace robodoc.backend
 
             foreach (RoboOrt ort in orte)
             {
-                modelBuilder.Entity<RoboOrt>().HasData(ort);
+                builder.Entity<RoboOrt>().HasData(ort);
             }
 
             #region Activities
@@ -58,7 +58,7 @@ namespace robodoc.backend
 
             foreach (RoboActivity activity in activities)
             {
-                modelBuilder.Entity<RoboActivity>().HasData(activity);
+                builder.Entity<RoboActivity>().HasData(activity);
             }
         }
     }
