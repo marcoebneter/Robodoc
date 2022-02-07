@@ -47,7 +47,7 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"marcoebneter_Robodoc" /d:sonar.cs.opencover.reportsPaths="./robodoc.backend/**/coverage.opencover.xml" /o:"marcoebneter" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet restore ./source
-          dotnet build --no-restore ./source
+          dotnet restore ./robodoc.backend
+          dotnet build --no-restore ./robodoc.backend
           dotnet test --no-build --collect:"XPlat Code Coverage" --verbosity normal ./source -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
