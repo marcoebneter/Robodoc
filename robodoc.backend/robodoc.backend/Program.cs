@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;using robodoc.backend;
 using robodoc.backend.Common;
+using robodoc.backend.Common.Mapper;
 using robodoc.backend.Data;
 using robodoc.backend.Repositories;
 using robodoc.backend.Services;
@@ -24,6 +26,7 @@ builder.Services.AddTransient<IMedikamentService, MedikamentService>();
 builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(Medikament));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

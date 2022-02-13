@@ -9,6 +9,7 @@ namespace robodoc.backend
         public SampleData(ModelBuilder builder)
         {
             var verabreichung = new List<Verabreichungsprozess>();
+            var medikament = new List<Medikament>();
             var orte = new List<RoboOrt>();
             var activities = new List<RoboActivity>();
 
@@ -32,6 +33,18 @@ namespace robodoc.backend
             foreach (Verabreichungsprozess verabproz in verabreichung)
             {
                 builder.Entity<Verabreichungsprozess>().HasData(verabproz);
+            }
+
+            #region Medikament
+            medikament.Add(new Medikament() {Id = Guid.NewGuid().ToString(),
+                Name = "Pantoloc", Einheit = Einheiten.Tabletten, VerabreichungsprozessId = verabreichung.Find(v => v.Name.Equals("lingual")).Id});
+            medikament.Add(new Medikament() {Id = Guid.NewGuid().ToString(),
+                Name = "Daflon", Einheit = Einheiten.Tabletten, VerabreichungsprozessId = verabreichung.Find(v => v.Name.Equals("lingual")).Id});
+            #endregion
+
+            foreach (Medikament med  in medikament)
+            {
+                builder.Entity<Medikament>().HasData(med);
             }
 
             #region Orte

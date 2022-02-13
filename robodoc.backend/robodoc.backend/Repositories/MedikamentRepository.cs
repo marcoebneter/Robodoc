@@ -22,7 +22,7 @@ namespace robodoc.backend.Repositories
         {
             return _dbContext.Medikamente
                 .Include(m => m.Verabreichungsprozess)
-                .Where(m => m.Id.Equals(m));
+                .Where(m => m.Id.Equals(id));
         }
 
         public void Delete(Medikament entity)

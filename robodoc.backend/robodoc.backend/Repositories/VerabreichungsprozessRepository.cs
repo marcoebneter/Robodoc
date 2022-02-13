@@ -17,7 +17,7 @@ namespace robodoc.backend.Repositories
 
         public IEnumerable<Verabreichungsprozess> Get(string id)
         {
-            return _dbContext.Verabreichungsprozesse.Where(v => v.Id.Equals(v));
+            return _dbContext.Verabreichungsprozesse.Where(v => v.Id.Equals(id));
         }
 
         public void Delete(Verabreichungsprozess entity)

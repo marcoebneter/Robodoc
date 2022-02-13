@@ -18,9 +18,24 @@ namespace robodoc.backend.Services
             return _repository.GetAll();
         }
 
-        public Medikament GetMedikamentById(string id)
+        public IEnumerable<Medikament> GetMedikamentById(string id)
         {
-            return _repository.Get(id).FirstOrDefault();
+            return _repository.Get(id);
+        }
+
+        public void Delete(string id)
+        {
+            _repository.Delete(id);
+        }
+
+        public Medikament Insert(Medikament entity)
+        {
+            return _repository.Insert(entity);
+        }
+
+        public Medikament Update(Medikament entity)
+        {
+            return _repository.Update(entity);
         }
     }
 }

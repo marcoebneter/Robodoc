@@ -5,6 +5,9 @@ namespace robodoc.backend.Services.Interfaces
     public interface IMedikamentService
     {
         IEnumerable<Medikament> GetMedikaments();
-        Medikament GetMedikamentById(string id);
+        IEnumerable<Medikament> GetMedikamentById(string id);
+        void Delete(string id);
+        Medikament Insert(Medikament entity);
+        Medikament Update(Medikament entity);
     }
 }

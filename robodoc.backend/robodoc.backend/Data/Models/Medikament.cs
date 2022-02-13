@@ -1,8 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Robodoc.Data.Models
 {
+    public enum Einheiten
+    {
+        Tabletten,
+        Kapseln,
+        Tropfen,
+        Brausetabletten,
+        Kautabletten,
+        [Display(Name = "mg/ml")]
+        mg_ml,
+        Ampullen,
+        Zäpfchen
+    }
     public class Medikament
     {
         [Key]
@@ -10,7 +23,7 @@ namespace Robodoc.Data.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Einheit { get; set; }
+        public Einheiten Einheit { get; set; }
 
         [ForeignKey(nameof(Verabreichungsprozess))]
         public string VerabreichungsprozessId { get; set; }

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using robodoc.backend.Common.Mapper;
+using robodoc.backend.Controllers.DTO;
 using robodoc.backend.Services.Interfaces;
 using Robodoc.Data.Models;
 
@@ -11,29 +15,33 @@ namespace robodoc.backend.Controllers
     public class MedikamentController : ControllerBase
     {
         private readonly IMedikamentService _service;
-        public MedikamentController(IMedikamentService service)
+        private readonly IMapper _mapper;
+
+        public MedikamentController(IMedikamentService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         // GET: api/<MedikamentController>
         [HttpGet]
-        public IEnumerable<Medikament> Get()
+        public IEnumerable<MedikamentDTO> Get()
         {
-            return _service.GetMedikaments();
+            return _service.GetMedikaments().Select(medikament => _mapper.Map<MedikamentDTO>(medikament));
         }
 
         // GET api/<MedikamentController>/5
         [HttpGet("{id}")]
-        public Medikament Get(string id)
+        public IEnumerable<MedikamentDTO> Get(string id)
         {
-            return _service.GetMedikamentById(id);
+            return _service.GetMedikamentById(id).Select(medikament => _mapper.Map<MedikamentDTO>(medikament));
         }
 
         // POST api/<MedikamentController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Medikament Post([FromBody] MedikamentDTO entity)
         {
+            return _service.Insert(_mapper.Map<Medikament>(entity));
         }
 
         // PUT api/<MedikamentController>/5
@@ -46,6 +54,7 @@ namespace robodoc.backend.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
+            _service.Delete(id);
         }
     }
 }
