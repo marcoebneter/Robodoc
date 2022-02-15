@@ -18,7 +18,7 @@ namespace robodoc.backend.Repositories
                 .Include(m => m.Verabreichungsprozess);
         }
 
-        public IEnumerable<Medikament> Get(string id)
+        public IEnumerable<Medikament> Get(Guid id)
         {
             return _dbContext.Medikamente
                 .Include(m => m.Verabreichungsprozess)
@@ -31,7 +31,7 @@ namespace robodoc.backend.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             Delete(Get(id).FirstOrDefault());
         }
@@ -40,7 +40,7 @@ namespace robodoc.backend.Repositories
         {
             var newMedikament = new Medikament
             {
-                Id = new Guid().ToString(),
+                Id = Guid.NewGuid(),
                 Name = entity.Name,
                 Einheit = entity.Einheit,
                 VerabreichungsprozessId = entity.VerabreichungsprozessId

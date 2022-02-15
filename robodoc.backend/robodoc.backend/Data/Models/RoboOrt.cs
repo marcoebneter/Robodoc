@@ -5,7 +5,7 @@ namespace robodoc.backend.Data.Models
     public class RoboOrt
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
 

@@ -5,7 +5,7 @@ namespace Robodoc.Data.Models
     public class Verabreichungsprozess
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
         public IEnumerable<Medikament> Medikamente { get; set; }

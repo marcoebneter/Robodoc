@@ -15,7 +15,7 @@ namespace robodoc.backend.Repositories
             return _dbContext.Verabreichungsprozesse;
         }
 
-        public IEnumerable<Verabreichungsprozess> Get(string id)
+        public IEnumerable<Verabreichungsprozess> Get(Guid id)
         {
             return _dbContext.Verabreichungsprozesse.Where(v => v.Id.Equals(id));
         }
@@ -25,7 +25,7 @@ namespace robodoc.backend.Repositories
             throw new NotImplementedException();
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }

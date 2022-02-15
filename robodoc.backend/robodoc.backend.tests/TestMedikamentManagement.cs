@@ -28,7 +28,7 @@ namespace robodoc.backend.tests
             {
                 new Medikament()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = Guid.NewGuid(),
                     Name = "Antibiotika",
                     Einheit = Einheiten.Tabletten,
                 }
@@ -37,8 +37,9 @@ namespace robodoc.backend.tests
             _mapper = new Mapper(new MapperConfiguration(conf => conf.AddProfile(typeof(MedikamentMapper))));
             _mock = new Mock<IRepository<Medikament>>();
             _mock.Setup(m => m.GetAll()).Returns(_medikaments);
-            _mock.Setup(m => m.Get(It.IsNotNull<string>())).Returns(_medikaments);
+            _mock.Setup(m => m.Get(It.IsNotNull<Guid>())).Returns(_medikaments);
             _mock.Setup(m => m.Insert(It.IsAny<Medikament>()));
+            _mock.Setup(m => m.Delete(It.IsAny<Guid>()));
             _service = new MedikamentService(_mock.Object);
         }
 
@@ -52,7 +53,7 @@ namespace robodoc.backend.tests
             var result = controller.Get();
 
             // assert
-            result.Should().NotBeEmpty();
+            result.Should().NotBeEmpty().And.BeEquivalentTo(_medikaments, o => o.ExcludingMissingMembers());
         }
 
         [Fact]
@@ -75,7 +76,7 @@ namespace robodoc.backend.tests
             var controller = new MedikamentController(_service, _mapper);
             var newMedi = new MedikamentDTO()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid(),
                 Name = "TestMedi",
                 Einheit = Einheiten.Kapseln.ToString(),
             };
@@ -85,6 +86,20 @@ namespace robodoc.backend.tests
 
             // assert
             _mock.Verify(m => m.Insert(It.IsAny<Medikament>()));
+        }
+
+        [Fact]
+        public void Delete()
+        {
+            // arrange
+            var controller = new MedikamentController(_service, _mapper);
+
+            // act
+            controller.Delete(_medikaments.First().Id);
+
+            // assert
+            _mock.Verify(m => m.Delete(It.IsAny<Guid>()));
+
         }
     }
 }

@@ -32,7 +32,7 @@ namespace robodoc.backend.Controllers
 
         // GET api/<MedikamentController>/5
         [HttpGet("{id}")]
-        public IEnumerable<MedikamentDTO> Get(string id)
+        public IEnumerable<MedikamentDTO> Get(Guid id)
         {
             return _service.GetMedikamentById(id).Select(medikament => _mapper.Map<MedikamentDTO>(medikament));
         }
@@ -46,13 +46,13 @@ namespace robodoc.backend.Controllers
 
         // PUT api/<MedikamentController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Guid value)
         {
         }
 
         // DELETE api/<MedikamentController>/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             _service.Delete(id);
         }

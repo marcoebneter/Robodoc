@@ -16,11 +16,11 @@ namespace robodoc.backend.tests
         private readonly Mock<IRepository<Verabreichungsprozess>> _mock;
         private readonly IVerabreichungsprozessService _service;
         private readonly IEnumerable<Verabreichungsprozess> _verabreichungsprozess;
-        private readonly string _guid;
+        private readonly Guid _guid;
 
         public TestVerabreichungsprozessManagement()
         {
-            _guid = Guid.NewGuid().ToString();
+            _guid = Guid.NewGuid();
             _verabreichungsprozess = new List<Verabreichungsprozess>()
             {
                 new Verabreichungsprozess()
@@ -32,7 +32,7 @@ namespace robodoc.backend.tests
 
             _mock = new Mock<IRepository<Verabreichungsprozess>>();
             _mock.Setup(m => m.GetAll()).Returns(_verabreichungsprozess);
-            _mock.Setup(m => m.Get(It.IsNotNull<string>())).Returns(_verabreichungsprozess);
+            _mock.Setup(m => m.Get(It.IsNotNull<Guid>())).Returns(_verabreichungsprozess);
             _service = new VerabreichungsprozessService(_mock.Object);
         }
 

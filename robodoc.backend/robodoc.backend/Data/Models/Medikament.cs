@@ -19,14 +19,14 @@ namespace Robodoc.Data.Models
     public class Medikament
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public Einheiten Einheit { get; set; }
 
         [ForeignKey(nameof(Verabreichungsprozess))]
-        public string VerabreichungsprozessId { get; set; }
+        public Guid VerabreichungsprozessId { get; set; }
         public Verabreichungsprozess Verabreichungsprozess { get; set; }
 
         public IEnumerable<MedikamentTherapie> MedikamentTherapies  { get; set; }

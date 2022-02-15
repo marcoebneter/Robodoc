@@ -16,7 +16,7 @@ namespace robodoc.backend.Services
             return _repository.GetAll();
         }
 
-        public IEnumerable<Verabreichungsprozess> GetVerabreichungsprozessById(string id)
+        public IEnumerable<Verabreichungsprozess> GetVerabreichungsprozessById(Guid id)
         {
             return _repository.Get(id);
         }
