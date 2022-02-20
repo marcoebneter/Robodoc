@@ -222,8 +222,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivity", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -236,38 +237,39 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "93539ed5-f6c4-4b13-b40c-49c91caebbe3",
+                            Id = new Guid("b606809c-f077-402b-9915-e2c26ad33194"),
                             Name = "warten"
                         },
                         new
                         {
-                            Id = "84401193-026f-45f2-a5c8-bcf586ab7c5e",
+                            Id = new Guid("4c69883f-b091-4f55-9cfc-751cee65b479"),
                             Name = "einfahren"
                         },
                         new
                         {
-                            Id = "d19ad3b1-d9e6-41b6-b8a6-24ac8f0e65e0",
+                            Id = new Guid("18f5805c-e7e1-4cf4-b636-8f7064eaa71b"),
                             Name = "verlassen"
                         },
                         new
                         {
-                            Id = "c118ec0b-9187-40a4-a6bb-f1ed082ccd5f",
+                            Id = new Guid("90221e71-2e2e-4f0c-a562-ab937abcef93"),
                             Name = "Medikament abgeben"
                         },
                         new
                         {
-                            Id = "b3c32518-99b1-4722-9e75-490135db9044",
+                            Id = new Guid("b6e1bee6-6460-4628-b350-039e837c8f3b"),
                             Name = "Medikament aufnehmen"
                         });
                 });
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivityStatus", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ActivityId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ActivityId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("PeriodEnd")
                         .ValueGeneratedOnAddOrUpdate()
@@ -279,8 +281,8 @@ namespace robodoc.backend.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("PeriodStart");
 
-                    b.Property<string>("RoboOrtId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("RoboOrtId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -307,8 +309,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboOrt", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -321,40 +324,41 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "198166c3-eedf-4a9c-b447-548436b43a4f",
+                            Id = new Guid("b7c1c927-42a4-46a2-abff-dd470caf6fa0"),
                             Name = "Apotheke"
                         },
                         new
                         {
-                            Id = "d20a75e6-3d65-47f4-a182-f75e6ee66308",
+                            Id = new Guid("00486833-7481-492a-a3fc-72b9f6cc7861"),
                             Name = "Parkposition"
                         },
                         new
                         {
-                            Id = "1976d038-368c-49f1-bae4-b02e5caa1b7a",
+                            Id = new Guid("5ef804d7-9692-4575-8dad-12488984c5f5"),
                             Name = "Zimmer 1"
                         },
                         new
                         {
-                            Id = "7e0465a3-8c51-425a-927b-ee03ac862cb5",
+                            Id = new Guid("211cb552-3e74-4d33-ba4f-4a70ea687a77"),
                             Name = "Zimmer 2"
                         },
                         new
                         {
-                            Id = "e59bcccd-9d18-4afc-b427-a31f6de6372e",
+                            Id = new Guid("10ac718a-9358-46c9-91cd-652c9afdcd13"),
                             Name = "Zimmer 3"
                         },
                         new
                         {
-                            Id = "74d6e802-0a02-47c1-a2bd-b90ece8c2bcb",
+                            Id = new Guid("451a1c87-26ed-4d2a-afc5-6e6422f94a66"),
                             Name = "Zimmer 4"
                         });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.Medikament", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Einheit")
                         .HasColumnType("int");
@@ -363,8 +367,8 @@ namespace robodoc.backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VerabreichungsprozessId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("VerabreichungsprozessId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -375,33 +379,34 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "29966e01-4ef5-4f79-92ad-d7f94142ba36",
+                            Id = new Guid("89007190-d27d-42b8-8f90-655c2c512634"),
                             Einheit = 0,
                             Name = "Pantoloc",
-                            VerabreichungsprozessId = "11bf5ad6-eb7d-4161-b25b-1a5f97be5ff6"
+                            VerabreichungsprozessId = new Guid("34df44a7-e8bf-47d3-a8f0-92bdc6fd6137")
                         },
                         new
                         {
-                            Id = "dca7fc1e-360a-46aa-846c-3257ead5fed6",
+                            Id = new Guid("180a195b-9f6c-46ca-9c00-3cfe20cd886f"),
                             Einheit = 0,
                             Name = "Daflon",
-                            VerabreichungsprozessId = "11bf5ad6-eb7d-4161-b25b-1a5f97be5ff6"
+                            VerabreichungsprozessId = new Guid("34df44a7-e8bf-47d3-a8f0-92bdc6fd6137")
                         });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.MedikamentTherapie", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("MedikamentId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("MedikamentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Menge")
                         .HasColumnType("int");
 
-                    b.Property<string>("TherapieId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("TherapieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -414,8 +419,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.Patient", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Anamnese")
                         .HasColumnType("nvarchar(max)");
@@ -441,8 +447,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.Therapie", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -455,8 +462,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.Therapieverfahren", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -464,8 +472,8 @@ namespace robodoc.backend.Migrations
                     b.Property<TimeSpan>("Intervall")
                         .HasColumnType("time");
 
-                    b.Property<string>("PatientId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PersonalId")
                         .HasColumnType("nvarchar(450)");
@@ -473,8 +481,8 @@ namespace robodoc.backend.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TherapieId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("TherapieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -489,14 +497,15 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.TherapieverfahrenDurchfuehrung", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PersonalId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("TherapieverfahrenId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("TherapieverfahrenId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Zeitpunkt")
                         .HasColumnType("datetime2");
@@ -512,8 +521,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -526,72 +536,72 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b25948e6-e42c-4229-b425-68f94a2af2c4",
+                            Id = new Guid("5054a585-2cd2-48e5-8a61-89835d8083c4"),
                             Name = "oral"
                         },
                         new
                         {
-                            Id = "11bf5ad6-eb7d-4161-b25b-1a5f97be5ff6",
+                            Id = new Guid("34df44a7-e8bf-47d3-a8f0-92bdc6fd6137"),
                             Name = "lingual"
                         },
                         new
                         {
-                            Id = "84808a60-051d-4f9a-93d1-b214cb566e85",
+                            Id = new Guid("cff7b8a4-559a-4318-ba59-a6c1e9072ffc"),
                             Name = "sublingual"
                         },
                         new
                         {
-                            Id = "cae8839c-d8ca-432a-af73-5b1993c486e3",
+                            Id = new Guid("934cf485-f45d-4619-8ae1-0b1f74c08737"),
                             Name = "intravenös"
                         },
                         new
                         {
-                            Id = "943f757d-3398-48ec-a468-585a2f9e1f69",
+                            Id = new Guid("979f9cf3-f7fd-4a21-899a-67c662de1dd3"),
                             Name = "intraarteriell"
                         },
                         new
                         {
-                            Id = "b116abff-67a2-4b1c-b5c8-62ca71e82d4c",
+                            Id = new Guid("40b3f75d-0194-4323-8aa2-de72cfe25ddb"),
                             Name = "intramuskulär"
                         },
                         new
                         {
-                            Id = "6d9933d2-e814-4f2a-933e-c103d752ae3c",
+                            Id = new Guid("fd0ef685-7cc5-485d-930a-eb8b403ab22a"),
                             Name = "kutan"
                         },
                         new
                         {
-                            Id = "1b2e6a04-7f8e-4208-b08a-aadd4e0d29b1",
+                            Id = new Guid("f39f9f22-7fdd-45c2-89ab-c4027510bff3"),
                             Name = "subkutan"
                         },
                         new
                         {
-                            Id = "60f9217a-0e33-40ef-b18a-22210347418e",
+                            Id = new Guid("7d3ba77e-d798-4323-b0c9-1d5e770f80bd"),
                             Name = "intrakutan"
                         },
                         new
                         {
-                            Id = "f7ee6ef7-f24f-42e2-baaa-6d21302142c0",
+                            Id = new Guid("ee84777f-3c06-4c21-80ca-2a90c7bcb242"),
                             Name = "perkutan"
                         },
                         new
                         {
-                            Id = "26bded86-950b-4a23-bbea-eda68c3b6eb1",
+                            Id = new Guid("89f16c03-07b0-4f4a-b249-703d72ede2fd"),
                             Name = "nasal"
                         },
                         new
                         {
-                            Id = "48b58177-79db-425b-a433-7b2de7848d31",
+                            Id = new Guid("ab5de655-7b7d-4356-bbb5-726a18c1a8dc"),
                             Name = "konjunktival"
                         },
                         new
                         {
-                            Id = "6b006eb3-3ef0-48c1-913a-c13ac2d03e98",
+                            Id = new Guid("f50496be-1247-472d-abd5-a4126474fc3a"),
                             Name = "rektal"
                         },
                         new
                         {
-                            Id = "a0bed6f9-adc1-44f8-be16-a295ca184e8a",
+                            Id = new Guid("fe57b2fb-a3a4-4cdc-8fe0-9a50d7a7b98d"),
                             Name = "vaginal"
                         });
                 });
@@ -651,11 +661,15 @@ namespace robodoc.backend.Migrations
                 {
                     b.HasOne("robodoc.backend.Data.Models.RoboActivity", "RoboActivity")
                         .WithMany("ActivityStatuses")
-                        .HasForeignKey("ActivityId");
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("robodoc.backend.Data.Models.RoboOrt", "RoboOrt")
                         .WithMany("ActivityStatuses")
-                        .HasForeignKey("RoboOrtId");
+                        .HasForeignKey("RoboOrtId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("RoboActivity");
 
@@ -666,7 +680,9 @@ namespace robodoc.backend.Migrations
                 {
                     b.HasOne("Robodoc.Data.Models.Verabreichungsprozess", "Verabreichungsprozess")
                         .WithMany("Medikamente")
-                        .HasForeignKey("VerabreichungsprozessId");
+                        .HasForeignKey("VerabreichungsprozessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Verabreichungsprozess");
                 });
@@ -675,11 +691,15 @@ namespace robodoc.backend.Migrations
                 {
                     b.HasOne("Robodoc.Data.Models.Medikament", "Medikament")
                         .WithMany("MedikamentTherapies")
-                        .HasForeignKey("MedikamentId");
+                        .HasForeignKey("MedikamentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Robodoc.Data.Models.Therapie", "Therapie")
                         .WithMany("MedikamentTherapies")
-                        .HasForeignKey("TherapieId");
+                        .HasForeignKey("TherapieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Medikament");
 
@@ -690,7 +710,9 @@ namespace robodoc.backend.Migrations
                 {
                     b.HasOne("Robodoc.Data.Models.Patient", "Patient")
                         .WithMany("Therapieverfahren")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Zustaendigkeit")
                         .WithMany()
@@ -698,7 +720,9 @@ namespace robodoc.backend.Migrations
 
                     b.HasOne("Robodoc.Data.Models.Therapie", "Therapie")
                         .WithMany("Therapieverfahren")
-                        .HasForeignKey("TherapieId");
+                        .HasForeignKey("TherapieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Patient");
 
@@ -716,7 +740,8 @@ namespace robodoc.backend.Migrations
                     b.HasOne("Robodoc.Data.Models.Therapieverfahren", "Therapieverfahren")
                         .WithMany("TherapieverfahrenDurchfuehrungen")
                         .HasForeignKey("TherapieverfahrenId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Personal");
 

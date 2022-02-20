@@ -50,7 +50,7 @@ namespace robodoc.backend.Repositories
 
         public Patient Update(Patient entity)
         {
-            if (entity == null || entity.Id == null)
+            if (entity == null)
             {
                 return entity;
             }

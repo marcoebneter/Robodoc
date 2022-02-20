@@ -46,8 +46,9 @@ namespace robodoc.backend.Controllers
 
         // PUT api/<MedikamentController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Guid value)
+        public void Put(Guid id, [FromBody] Medikament entity)
         {
+            _service.Update(_mapper.Map<Medikament>(entity));
         }
 
         // DELETE api/<MedikamentController>/5

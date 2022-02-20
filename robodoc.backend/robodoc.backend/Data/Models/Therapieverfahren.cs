@@ -20,7 +20,7 @@ namespace Robodoc.Data.Models
         public Patient Patient { get; set; }
 
         [ForeignKey(nameof(Zustaendigkeit))]
-        public Guid PersonalId { get; set;}
+        public string PersonalId { get; set;}
         public IdentityUser Zustaendigkeit { get; set;}
 
         [ForeignKey(nameof(Therapie))]

@@ -37,7 +37,7 @@ namespace robodoc.backend.tests
         }
 
         [Fact]
-        public void GetAll()
+        public void TestVerabGetAll()
         {
             // arrange
             var controller = new VerabreichungsprozessController(_service);
@@ -50,7 +50,7 @@ namespace robodoc.backend.tests
         }
 
         [Fact]
-        public void Get()
+        public void TestVerabGet()
         {
             // arrange
             var controller = new VerabreichungsprozessController(_service);

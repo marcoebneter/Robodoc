@@ -38,34 +38,16 @@ namespace robodoc.backend.Repositories
 
         public Medikament Insert(Medikament entity)
         {
-            var newMedikament = new Medikament
-            {
-                Id = Guid.NewGuid(),
-                Name = entity.Name,
-                Einheit = entity.Einheit,
-                VerabreichungsprozessId = entity.VerabreichungsprozessId
-            };
-            _dbContext.Medikamente.Add(newMedikament);
+            _dbContext.Medikamente.Add(entity);
             _dbContext.SaveChanges();
-            return newMedikament;
+            return entity;
         }
 
         public Medikament Update(Medikament entity)
         {
-            if (entity == null || entity.Id == null)
-            {
-                return entity;
-            }
-
-            var oldMedikament = Get(entity.Id).FirstOrDefault();
-            oldMedikament.Name = entity.Name;
-            oldMedikament.Einheit = entity.Einheit;
-            oldMedikament.VerabreichungsprozessId = entity.VerabreichungsprozessId;
-            oldMedikament.Verabreichungsprozess =
-                _dbContext.Verabreichungsprozesse.FirstOrDefault(v => v.Id == entity.VerabreichungsprozessId);
-            _dbContext.Medikamente.Update(oldMedikament);
+            _dbContext.Medikamente.Update(entity);
             _dbContext.SaveChanges();
-            return oldMedikament;
+            return entity;
         }
     }
 }

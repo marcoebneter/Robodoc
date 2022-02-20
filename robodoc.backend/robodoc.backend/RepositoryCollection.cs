@@ -12,6 +12,7 @@ namespace robodoc.backend
 
         public IRepository<Verabreichungsprozess> VerabreichungsprozessRepository { get; private set; }
         public IRepository<Medikament> MedikamentRepository { get; private set; }
+        public IRepository<Therapie> TherapieRepository { get; private set; }
 
         private ApplicationDbContext _dbContext { get; set; }
         public RepositoryCollection(ApplicationDbContext dbContext = null)
@@ -22,6 +23,7 @@ namespace robodoc.backend
 
             VerabreichungsprozessRepository = new VerabreichungsprozessRepository((_dbContext));
             MedikamentRepository = new MedikamentRepository(_dbContext);
+            TherapieRepository = new TherapieRepository(_dbContext);
         }
     }
 }

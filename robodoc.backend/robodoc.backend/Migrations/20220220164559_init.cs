@@ -52,7 +52,7 @@ namespace robodoc.backend.Migrations
                 name: "Patienten",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Vorname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EintrittDatum = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -68,7 +68,7 @@ namespace robodoc.backend.Migrations
                 name: "RoboActivities",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -80,7 +80,7 @@ namespace robodoc.backend.Migrations
                 name: "RoboOrts",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -92,7 +92,7 @@ namespace robodoc.backend.Migrations
                 name: "Therapien",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -104,7 +104,7 @@ namespace robodoc.backend.Migrations
                 name: "Verabreichungsprozesse",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -222,10 +222,10 @@ namespace robodoc.backend.Migrations
                 name: "RoboActivityStatus",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    RoboOrtId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ActivityId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    RoboOrtId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ActivityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PeriodEnd = table.Column<DateTime>(type: "datetime2", nullable: false)
                         .Annotation("SqlServer:IsTemporal", true)
                         .Annotation("SqlServer:TemporalPeriodEndColumnName", "PeriodEnd")
@@ -242,12 +242,14 @@ namespace robodoc.backend.Migrations
                         name: "FK_RoboActivityStatus_RoboActivities_ActivityId",
                         column: x => x.ActivityId,
                         principalTable: "RoboActivities",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RoboActivityStatus_RoboOrts_RoboOrtId",
                         column: x => x.RoboOrtId,
                         principalTable: "RoboOrts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("SqlServer:IsTemporal", true)
                 .Annotation("SqlServer:TemporalHistoryTableName", "RoboActivityStatusHistory")
@@ -259,13 +261,13 @@ namespace robodoc.backend.Migrations
                 name: "Therapieverfahren",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Intervall = table.Column<TimeSpan>(type: "time", nullable: false),
-                    PatientId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PersonalId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TherapieId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TherapieId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -279,22 +281,24 @@ namespace robodoc.backend.Migrations
                         name: "FK_Therapieverfahren_Patienten_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patienten",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Therapieverfahren_Therapien_TherapieId",
                         column: x => x.TherapieId,
                         principalTable: "Therapien",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Medikamente",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Einheit = table.Column<int>(type: "int", nullable: false),
-                    VerabreichungsprozessId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    VerabreichungsprozessId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -303,17 +307,18 @@ namespace robodoc.backend.Migrations
                         name: "FK_Medikamente_Verabreichungsprozesse_VerabreichungsprozessId",
                         column: x => x.VerabreichungsprozessId,
                         principalTable: "Verabreichungsprozesse",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Durchfuehrungen",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Zeitpunkt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PersonalId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TherapieverfahrenId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    TherapieverfahrenId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -334,10 +339,10 @@ namespace robodoc.backend.Migrations
                 name: "MedikamentTherapien",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Menge = table.Column<int>(type: "int", nullable: false),
-                    MedikamentId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TherapieId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    MedikamentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TherapieId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -346,12 +351,14 @@ namespace robodoc.backend.Migrations
                         name: "FK_MedikamentTherapien_Medikamente_MedikamentId",
                         column: x => x.MedikamentId,
                         principalTable: "Medikamente",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MedikamentTherapien_Therapien_TherapieId",
                         column: x => x.TherapieId,
                         principalTable: "Therapien",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -359,11 +366,11 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { "84401193-026f-45f2-a5c8-bcf586ab7c5e", "einfahren" },
-                    { "93539ed5-f6c4-4b13-b40c-49c91caebbe3", "warten" },
-                    { "b3c32518-99b1-4722-9e75-490135db9044", "Medikament aufnehmen" },
-                    { "c118ec0b-9187-40a4-a6bb-f1ed082ccd5f", "Medikament abgeben" },
-                    { "d19ad3b1-d9e6-41b6-b8a6-24ac8f0e65e0", "verlassen" }
+                    { new Guid("18f5805c-e7e1-4cf4-b636-8f7064eaa71b"), "verlassen" },
+                    { new Guid("4c69883f-b091-4f55-9cfc-751cee65b479"), "einfahren" },
+                    { new Guid("90221e71-2e2e-4f0c-a562-ab937abcef93"), "Medikament abgeben" },
+                    { new Guid("b606809c-f077-402b-9915-e2c26ad33194"), "warten" },
+                    { new Guid("b6e1bee6-6460-4628-b350-039e837c8f3b"), "Medikament aufnehmen" }
                 });
 
             migrationBuilder.InsertData(
@@ -371,12 +378,12 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { "1976d038-368c-49f1-bae4-b02e5caa1b7a", "Zimmer 1" },
-                    { "198166c3-eedf-4a9c-b447-548436b43a4f", "Apotheke" },
-                    { "74d6e802-0a02-47c1-a2bd-b90ece8c2bcb", "Zimmer 4" },
-                    { "7e0465a3-8c51-425a-927b-ee03ac862cb5", "Zimmer 2" },
-                    { "d20a75e6-3d65-47f4-a182-f75e6ee66308", "Parkposition" },
-                    { "e59bcccd-9d18-4afc-b427-a31f6de6372e", "Zimmer 3" }
+                    { new Guid("00486833-7481-492a-a3fc-72b9f6cc7861"), "Parkposition" },
+                    { new Guid("10ac718a-9358-46c9-91cd-652c9afdcd13"), "Zimmer 3" },
+                    { new Guid("211cb552-3e74-4d33-ba4f-4a70ea687a77"), "Zimmer 2" },
+                    { new Guid("451a1c87-26ed-4d2a-afc5-6e6422f94a66"), "Zimmer 4" },
+                    { new Guid("5ef804d7-9692-4575-8dad-12488984c5f5"), "Zimmer 1" },
+                    { new Guid("b7c1c927-42a4-46a2-abff-dd470caf6fa0"), "Apotheke" }
                 });
 
             migrationBuilder.InsertData(
@@ -384,31 +391,31 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { "11bf5ad6-eb7d-4161-b25b-1a5f97be5ff6", "lingual" },
-                    { "1b2e6a04-7f8e-4208-b08a-aadd4e0d29b1", "subkutan" },
-                    { "26bded86-950b-4a23-bbea-eda68c3b6eb1", "nasal" },
-                    { "48b58177-79db-425b-a433-7b2de7848d31", "konjunktival" },
-                    { "60f9217a-0e33-40ef-b18a-22210347418e", "intrakutan" },
-                    { "6b006eb3-3ef0-48c1-913a-c13ac2d03e98", "rektal" },
-                    { "6d9933d2-e814-4f2a-933e-c103d752ae3c", "kutan" },
-                    { "84808a60-051d-4f9a-93d1-b214cb566e85", "sublingual" },
-                    { "943f757d-3398-48ec-a468-585a2f9e1f69", "intraarteriell" },
-                    { "a0bed6f9-adc1-44f8-be16-a295ca184e8a", "vaginal" },
-                    { "b116abff-67a2-4b1c-b5c8-62ca71e82d4c", "intramuskulär" },
-                    { "b25948e6-e42c-4229-b425-68f94a2af2c4", "oral" },
-                    { "cae8839c-d8ca-432a-af73-5b1993c486e3", "intravenös" },
-                    { "f7ee6ef7-f24f-42e2-baaa-6d21302142c0", "perkutan" }
+                    { new Guid("34df44a7-e8bf-47d3-a8f0-92bdc6fd6137"), "lingual" },
+                    { new Guid("40b3f75d-0194-4323-8aa2-de72cfe25ddb"), "intramuskulär" },
+                    { new Guid("5054a585-2cd2-48e5-8a61-89835d8083c4"), "oral" },
+                    { new Guid("7d3ba77e-d798-4323-b0c9-1d5e770f80bd"), "intrakutan" },
+                    { new Guid("89f16c03-07b0-4f4a-b249-703d72ede2fd"), "nasal" },
+                    { new Guid("934cf485-f45d-4619-8ae1-0b1f74c08737"), "intravenös" },
+                    { new Guid("979f9cf3-f7fd-4a21-899a-67c662de1dd3"), "intraarteriell" },
+                    { new Guid("ab5de655-7b7d-4356-bbb5-726a18c1a8dc"), "konjunktival" },
+                    { new Guid("cff7b8a4-559a-4318-ba59-a6c1e9072ffc"), "sublingual" },
+                    { new Guid("ee84777f-3c06-4c21-80ca-2a90c7bcb242"), "perkutan" },
+                    { new Guid("f39f9f22-7fdd-45c2-89ab-c4027510bff3"), "subkutan" },
+                    { new Guid("f50496be-1247-472d-abd5-a4126474fc3a"), "rektal" },
+                    { new Guid("fd0ef685-7cc5-485d-930a-eb8b403ab22a"), "kutan" },
+                    { new Guid("fe57b2fb-a3a4-4cdc-8fe0-9a50d7a7b98d"), "vaginal" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Medikamente",
                 columns: new[] { "Id", "Einheit", "Name", "VerabreichungsprozessId" },
-                values: new object[] { "29966e01-4ef5-4f79-92ad-d7f94142ba36", 0, "Pantoloc", "11bf5ad6-eb7d-4161-b25b-1a5f97be5ff6" });
+                values: new object[] { new Guid("180a195b-9f6c-46ca-9c00-3cfe20cd886f"), 0, "Daflon", new Guid("34df44a7-e8bf-47d3-a8f0-92bdc6fd6137") });
 
             migrationBuilder.InsertData(
                 table: "Medikamente",
                 columns: new[] { "Id", "Einheit", "Name", "VerabreichungsprozessId" },
-                values: new object[] { "dca7fc1e-360a-46aa-846c-3257ead5fed6", 0, "Daflon", "11bf5ad6-eb7d-4161-b25b-1a5f97be5ff6" });
+                values: new object[] { new Guid("89007190-d27d-42b8-8f90-655c2c512634"), 0, "Pantoloc", new Guid("34df44a7-e8bf-47d3-a8f0-92bdc6fd6137") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

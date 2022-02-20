@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Robodoc.Data.Models
 {
+    [Flags]
     public enum Einheiten
     {
         Tabletten,
