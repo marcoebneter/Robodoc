@@ -13,7 +13,7 @@ namespace robodoc.backend.Controllers
         [HttpGet]
         public IEnumerable<TherapieDTO> Get()
         {
-            return;
+            return null;
         }
 
         // GET api/<TherapieController>/5
