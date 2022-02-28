@@ -10,11 +10,6 @@ namespace Robodoc.Data.Models
         public Guid Id { get; set; }
         [Required]
         public DateTime Zeitpunkt { get; set; }
-
-        [ForeignKey(nameof(Personal))]
-        public string PersonalId { get; set; }
-        public IdentityUser Personal { get; set; }
-
         [ForeignKey(nameof(Therapieverfahren))]
         public Guid TherapieverfahrenId { get; set; }
         public Therapieverfahren Therapieverfahren { get; set; }

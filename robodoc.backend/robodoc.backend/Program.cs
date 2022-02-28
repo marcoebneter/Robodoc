@@ -19,11 +19,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(config =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+// add Tables
 builder.Services.AddTransient<IVerabreichungsprozessService, VerabreichungsprozessService>();
 builder.Services.AddScoped<IRepository<Verabreichungsprozess>, VerabreichungsprozessRepository>();
 
 builder.Services.AddTransient<IMedikamentService, MedikamentService>();
 builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
+
+//builder.Services.AddScoped<IRepository<MedikamentTherapie>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<Therapie>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<Patient>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<Therapieverfahren>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<TherapieverfahrenDurchfuehrung>, MedikamentRepository>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(Medikament));

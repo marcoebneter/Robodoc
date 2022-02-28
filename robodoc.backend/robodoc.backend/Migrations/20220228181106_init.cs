@@ -317,17 +317,11 @@ namespace robodoc.backend.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Zeitpunkt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PersonalId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TherapieverfahrenId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Durchfuehrungen", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Durchfuehrungen_AspNetUsers_PersonalId",
-                        column: x => x.PersonalId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Durchfuehrungen_Therapieverfahren_TherapieverfahrenId",
                         column: x => x.TherapieverfahrenId,
@@ -362,15 +356,20 @@ namespace robodoc.backend.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Patienten",
+                columns: new[] { "Id", "Anamnese", "AustrittDatum", "EintrittDatum", "Name", "Vorname" },
+                values: new object[] { new Guid("67015aba-1dac-4eec-a71e-aa63703dd6a2"), "isch en gaile siech", null, new DateTime(2022, 2, 28, 19, 11, 6, 158, DateTimeKind.Local).AddTicks(4902), "Zingg", "Joel" });
+
+            migrationBuilder.InsertData(
                 table: "RoboActivities",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("06f9df31-bee7-43f1-9b2f-08a3c82ce8e7"), "einfahren" },
-                    { new Guid("509074e4-4fdf-45f5-8399-17acffe7fb58"), "Medikament aufnehmen" },
-                    { new Guid("7d8cc16f-321f-4ae3-b841-c9e2ef1af0e5"), "Medikament abgeben" },
-                    { new Guid("c33da01d-116c-42f8-9d05-cbc22e66bb92"), "verlassen" },
-                    { new Guid("d08cae4e-c56f-4cb5-aeb0-e2b3180f64f1"), "warten" }
+                    { new Guid("10b24b40-3637-4d37-af21-d739827bb724"), "Medikament abgeben" },
+                    { new Guid("d49f19d7-2c5a-4ac0-bc3d-4a6102c92d19"), "einfahren" },
+                    { new Guid("df61a496-1289-47fb-960b-7dd0ff23aac3"), "verlassen" },
+                    { new Guid("e417d778-8b01-45a5-ae3a-c55a5874bab4"), "Medikament aufnehmen" },
+                    { new Guid("f908d1c6-dcf4-4030-8e71-8cb770f1537f"), "warten" }
                 });
 
             migrationBuilder.InsertData(
@@ -378,44 +377,54 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("1192e868-96ab-4023-abf9-6462bd56b450"), "Zimmer 2" },
-                    { new Guid("34de9830-8c2f-4ec4-a32b-732fb6cf289b"), "Parkposition" },
-                    { new Guid("77763e5d-d99b-4570-92c2-b3d352a7285a"), "Zimmer 1" },
-                    { new Guid("7c48464f-44ae-4162-8057-6e202d809fb2"), "Apotheke" },
-                    { new Guid("e2dd2747-5a16-44b4-85bd-888505a8370f"), "Zimmer 4" },
-                    { new Guid("eca64f37-a83c-4d2b-8db4-bb1ed4678128"), "Zimmer 3" }
+                    { new Guid("0e5af09d-0850-4004-8764-3ba3cdb46da5"), "Apotheke" },
+                    { new Guid("4b7d4da0-649f-461b-82c1-7ffd15fe4821"), "Zimmer 1" },
+                    { new Guid("c368affa-52ff-4c72-97d8-9f1d0808a154"), "Zimmer 4" },
+                    { new Guid("c3c4b841-5341-40f5-ac43-150af238b944"), "Zimmer 3" },
+                    { new Guid("e038a641-5c81-426d-8305-b70f3832ed03"), "Zimmer 2" },
+                    { new Guid("f9de62cb-bdb6-4530-ab62-bc49107f5728"), "Parkposition" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Therapien",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { new Guid("7f5c7716-980f-42ed-8e96-0ad1b8703f0f"), "eine Therapie" });
 
             migrationBuilder.InsertData(
                 table: "Verabreichungsprozesse",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("117be396-5683-48cb-bb8a-ed6ce5b82391"), "rektal" },
-                    { new Guid("21c6c3b0-f433-48b6-bf31-8da9b354a2dc"), "vaginal" },
-                    { new Guid("3156482b-1783-42c0-b7f0-51a113bf31ff"), "nasal" },
-                    { new Guid("4007e911-5979-48ad-b03d-840548ce9b93"), "perkutan" },
-                    { new Guid("494c45d3-4037-43a1-bf6e-2e095dcc9c6f"), "subkutan" },
-                    { new Guid("61dbc53a-aa35-4671-8d57-ed90031f0388"), "intravenös" },
-                    { new Guid("7220b4ae-3658-4800-9222-c4c0c12684e4"), "intramuskulär" },
-                    { new Guid("741f6f2d-5e2a-4c53-80fa-fb09a4669261"), "intraarteriell" },
-                    { new Guid("98480a11-4206-4181-abd1-a82a51da0ddc"), "lingual" },
-                    { new Guid("a2f4833d-1e1d-4b9b-8a44-f42a39583d9e"), "oral" },
-                    { new Guid("a6810d13-6e30-4a26-9a08-53d8f7370f2c"), "intrakutan" },
-                    { new Guid("bd303f17-24f6-4e23-920c-1fa88a801626"), "konjunktival" },
-                    { new Guid("cbd1c74c-eeed-4a3c-8e5f-21fd5e08eac4"), "kutan" },
-                    { new Guid("e5090eab-bf4e-4e88-b6b8-0d2830dbe4ad"), "sublingual" }
+                    { new Guid("0ba7bf6e-1be8-462d-ac00-e0a87307aca0"), "lingual" },
+                    { new Guid("2ed28017-735a-4f82-b88c-d20f5712cd1d"), "oral" },
+                    { new Guid("307a99c2-ac0f-4e4f-9d4c-5487e6bb7ded"), "sublingual" },
+                    { new Guid("323abd05-d54b-4d8c-ac11-270ee0a11795"), "intravenös" },
+                    { new Guid("4cf7b2ff-6fac-4f90-b9b7-9e879d478a3d"), "vaginal" },
+                    { new Guid("69e19fa3-68cd-491f-b032-f35cd141925f"), "intramuskulär" },
+                    { new Guid("78f5d5cd-b297-4907-abd1-ffe74e5bd57d"), "intraarteriell" },
+                    { new Guid("87938db6-3349-437e-a245-1d4589bc858f"), "nasal" },
+                    { new Guid("92d22f8c-1e23-4be5-b0db-cdbd1155e875"), "perkutan" },
+                    { new Guid("94440bb6-8db0-472b-8ebf-3db51c988efb"), "konjunktival" },
+                    { new Guid("b3aefdaf-c5c1-49c5-bd21-c8624c3acbfa"), "subkutan" },
+                    { new Guid("c97b2829-05ef-47a8-aeb7-7fb36c29c69c"), "intrakutan" },
+                    { new Guid("f14fb665-f2b1-4922-8857-b330756376a7"), "rektal" },
+                    { new Guid("f2614d47-29d2-4bfc-9783-9a250baeb3b3"), "kutan" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Medikamente",
                 columns: new[] { "Id", "Einheit", "Name", "VerabreichungsprozessId" },
-                values: new object[] { new Guid("223e1dba-2f1d-439c-be41-7a0466770fa6"), 0, "Daflon", new Guid("98480a11-4206-4181-abd1-a82a51da0ddc") });
+                values: new object[] { new Guid("b2930a89-02a7-4de8-9e0e-28287c90c3f1"), 0, "Pantoloc", new Guid("0ba7bf6e-1be8-462d-ac00-e0a87307aca0") });
 
             migrationBuilder.InsertData(
                 table: "Medikamente",
                 columns: new[] { "Id", "Einheit", "Name", "VerabreichungsprozessId" },
-                values: new object[] { new Guid("eb7d57ca-7bd4-4489-9198-fe2e2dfc9aa7"), 0, "Pantoloc", new Guid("98480a11-4206-4181-abd1-a82a51da0ddc") });
+                values: new object[] { new Guid("d45d58a1-3290-4cfd-bf73-ba6bed3fd22d"), 0, "Daflon", new Guid("0ba7bf6e-1be8-462d-ac00-e0a87307aca0") });
+
+            migrationBuilder.InsertData(
+                table: "MedikamentTherapien",
+                columns: new[] { "Id", "MedikamentId", "Menge", "TherapieId" },
+                values: new object[] { new Guid("b2182886-1eaf-46b9-8958-31cb02b448c5"), new Guid("b2930a89-02a7-4de8-9e0e-28287c90c3f1"), 5, new Guid("7f5c7716-980f-42ed-8e96-0ad1b8703f0f") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -455,11 +464,6 @@ namespace robodoc.backend.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Durchfuehrungen_PersonalId",
-                table: "Durchfuehrungen",
-                column: "PersonalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Durchfuehrungen_TherapieverfahrenId",
