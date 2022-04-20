@@ -25,9 +25,9 @@ namespace robodoc.backend.Controllers
 
         // GET: api/<MedikamentController>
         [HttpGet]
-        public IEnumerable<MedikamentDTO> Get()
+        public IEnumerable<Medikament> Get()
         {
-            return _service.GetMedikaments().Select(medikament => _mapper.Map<MedikamentDTO>(medikament));
+            return _service.GetMedikaments();
         }
 
         // GET api/<MedikamentController>/5

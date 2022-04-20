@@ -17,6 +17,26 @@ namespace Robodoc.Data.Models
         Ampullen,
         Zäpfchen
     }
+
+    [Flags]
+    public enum Verabreichungsprozesse
+    {
+        oral,
+        lingual,
+        sublingual,
+        intravenoes,
+        intraarteriell,
+        intramuskulaer,
+        kutan,
+        subkutan,
+        intrakutan,
+        perkutan,
+        nasal,
+        konjunktival,
+        rektal,
+        vaginal
+    }
+
     public class Medikament
     {
         [Key]
@@ -25,10 +45,8 @@ namespace Robodoc.Data.Models
         public string Name { get; set; }
         [Required]
         public Einheiten Einheit { get; set; }
-
-        [ForeignKey(nameof(Verabreichungsprozess))]
-        public Guid VerabreichungsprozessId { get; set; }
-        public Verabreichungsprozess Verabreichungsprozess { get; set; }
+        [Required]
+        public Verabreichungsprozesse Verabreichungsprozess { get; set; }
 
         public IEnumerable<MedikamentTherapie> MedikamentTherapies  { get; set; }
     }

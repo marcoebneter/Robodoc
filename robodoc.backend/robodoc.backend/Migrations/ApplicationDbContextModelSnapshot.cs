@@ -237,27 +237,27 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f908d1c6-dcf4-4030-8e71-8cb770f1537f"),
+                            Id = new Guid("b7d365bc-43a3-4cac-8ab0-9b748f0120df"),
                             Name = "warten"
                         },
                         new
                         {
-                            Id = new Guid("d49f19d7-2c5a-4ac0-bc3d-4a6102c92d19"),
+                            Id = new Guid("6f24ab55-c547-497b-9313-d2e31cb09515"),
                             Name = "einfahren"
                         },
                         new
                         {
-                            Id = new Guid("df61a496-1289-47fb-960b-7dd0ff23aac3"),
+                            Id = new Guid("abb1a1ea-f914-4846-886d-3a7485b55dee"),
                             Name = "verlassen"
                         },
                         new
                         {
-                            Id = new Guid("10b24b40-3637-4d37-af21-d739827bb724"),
+                            Id = new Guid("d0ee298d-c44d-4c64-89c3-0b4ffcabd874"),
                             Name = "Medikament abgeben"
                         },
                         new
                         {
-                            Id = new Guid("e417d778-8b01-45a5-ae3a-c55a5874bab4"),
+                            Id = new Guid("12d9f03d-0814-48f0-9aa2-df2e16bdda1a"),
                             Name = "Medikament aufnehmen"
                         });
                 });
@@ -324,32 +324,32 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0e5af09d-0850-4004-8764-3ba3cdb46da5"),
+                            Id = new Guid("26fac76a-d0d1-4e5d-b835-472f662594b7"),
                             Name = "Apotheke"
                         },
                         new
                         {
-                            Id = new Guid("f9de62cb-bdb6-4530-ab62-bc49107f5728"),
+                            Id = new Guid("f057aae6-b938-4e98-9275-6cbeedbd5cb4"),
                             Name = "Parkposition"
                         },
                         new
                         {
-                            Id = new Guid("4b7d4da0-649f-461b-82c1-7ffd15fe4821"),
+                            Id = new Guid("5b400e36-dc5b-4886-b59c-22dae0ba0b54"),
                             Name = "Zimmer 1"
                         },
                         new
                         {
-                            Id = new Guid("e038a641-5c81-426d-8305-b70f3832ed03"),
+                            Id = new Guid("bc9bb5c5-13c6-49d1-8c5b-4e49884da9b8"),
                             Name = "Zimmer 2"
                         },
                         new
                         {
-                            Id = new Guid("c3c4b841-5341-40f5-ac43-150af238b944"),
+                            Id = new Guid("e910bac0-d3ea-4462-9f95-5a1dd6ca3572"),
                             Name = "Zimmer 3"
                         },
                         new
                         {
-                            Id = new Guid("c368affa-52ff-4c72-97d8-9f1d0808a154"),
+                            Id = new Guid("8f4a9fe6-0c06-415e-89be-52724f7e01cb"),
                             Name = "Zimmer 4"
                         });
                 });
@@ -367,29 +367,27 @@ namespace robodoc.backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("VerabreichungsprozessId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Verabreichungsprozess")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("VerabreichungsprozessId");
 
                     b.ToTable("Medikamente");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b2930a89-02a7-4de8-9e0e-28287c90c3f1"),
+                            Id = new Guid("84fc6b28-7c1d-46eb-a364-203632751225"),
                             Einheit = 0,
                             Name = "Pantoloc",
-                            VerabreichungsprozessId = new Guid("0ba7bf6e-1be8-462d-ac00-e0a87307aca0")
+                            Verabreichungsprozess = 1
                         },
                         new
                         {
-                            Id = new Guid("d45d58a1-3290-4cfd-bf73-ba6bed3fd22d"),
+                            Id = new Guid("a6c2cce1-c492-48c9-876c-c400c75e09ed"),
                             Einheit = 0,
                             Name = "Daflon",
-                            VerabreichungsprozessId = new Guid("0ba7bf6e-1be8-462d-ac00-e0a87307aca0")
+                            Verabreichungsprozess = 6
                         });
                 });
 
@@ -419,10 +417,10 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b2182886-1eaf-46b9-8958-31cb02b448c5"),
-                            MedikamentId = new Guid("b2930a89-02a7-4de8-9e0e-28287c90c3f1"),
+                            Id = new Guid("7ad80e56-b621-4ded-8151-49df77040408"),
+                            MedikamentId = new Guid("84fc6b28-7c1d-46eb-a364-203632751225"),
                             Menge = 5,
-                            TherapieId = new Guid("7f5c7716-980f-42ed-8e96-0ad1b8703f0f")
+                            TherapieId = new Guid("661a0576-157b-4c70-8a90-7fd26b59a834")
                         });
                 });
 
@@ -456,9 +454,9 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("67015aba-1dac-4eec-a71e-aa63703dd6a2"),
+                            Id = new Guid("daaf542c-973a-4370-97ba-71db90f2ea5a"),
                             Anamnese = "isch en gaile siech",
-                            EintrittDatum = new DateTime(2022, 2, 28, 19, 11, 6, 158, DateTimeKind.Local).AddTicks(4902),
+                            EintrittDatum = new DateTime(2022, 4, 20, 8, 6, 25, 620, DateTimeKind.Local).AddTicks(4576),
                             Name = "Zingg",
                             Vorname = "Joel"
                         });
@@ -481,7 +479,7 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7f5c7716-980f-42ed-8e96-0ad1b8703f0f"),
+                            Id = new Guid("661a0576-157b-4c70-8a90-7fd26b59a834"),
                             Name = "eine Therapie"
                         });
                 });
@@ -538,93 +536,6 @@ namespace robodoc.backend.Migrations
                     b.HasIndex("TherapieverfahrenId");
 
                     b.ToTable("Durchfuehrungen");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Verabreichungsprozesse");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("2ed28017-735a-4f82-b88c-d20f5712cd1d"),
-                            Name = "oral"
-                        },
-                        new
-                        {
-                            Id = new Guid("0ba7bf6e-1be8-462d-ac00-e0a87307aca0"),
-                            Name = "lingual"
-                        },
-                        new
-                        {
-                            Id = new Guid("307a99c2-ac0f-4e4f-9d4c-5487e6bb7ded"),
-                            Name = "sublingual"
-                        },
-                        new
-                        {
-                            Id = new Guid("323abd05-d54b-4d8c-ac11-270ee0a11795"),
-                            Name = "intravenös"
-                        },
-                        new
-                        {
-                            Id = new Guid("78f5d5cd-b297-4907-abd1-ffe74e5bd57d"),
-                            Name = "intraarteriell"
-                        },
-                        new
-                        {
-                            Id = new Guid("69e19fa3-68cd-491f-b032-f35cd141925f"),
-                            Name = "intramuskulär"
-                        },
-                        new
-                        {
-                            Id = new Guid("f2614d47-29d2-4bfc-9783-9a250baeb3b3"),
-                            Name = "kutan"
-                        },
-                        new
-                        {
-                            Id = new Guid("b3aefdaf-c5c1-49c5-bd21-c8624c3acbfa"),
-                            Name = "subkutan"
-                        },
-                        new
-                        {
-                            Id = new Guid("c97b2829-05ef-47a8-aeb7-7fb36c29c69c"),
-                            Name = "intrakutan"
-                        },
-                        new
-                        {
-                            Id = new Guid("92d22f8c-1e23-4be5-b0db-cdbd1155e875"),
-                            Name = "perkutan"
-                        },
-                        new
-                        {
-                            Id = new Guid("87938db6-3349-437e-a245-1d4589bc858f"),
-                            Name = "nasal"
-                        },
-                        new
-                        {
-                            Id = new Guid("94440bb6-8db0-472b-8ebf-3db51c988efb"),
-                            Name = "konjunktival"
-                        },
-                        new
-                        {
-                            Id = new Guid("f14fb665-f2b1-4922-8857-b330756376a7"),
-                            Name = "rektal"
-                        },
-                        new
-                        {
-                            Id = new Guid("4cf7b2ff-6fac-4f90-b9b7-9e879d478a3d"),
-                            Name = "vaginal"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -695,17 +606,6 @@ namespace robodoc.backend.Migrations
                     b.Navigation("RoboActivity");
 
                     b.Navigation("RoboOrt");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Medikament", b =>
-                {
-                    b.HasOne("Robodoc.Data.Models.Verabreichungsprozess", "Verabreichungsprozess")
-                        .WithMany("Medikamente")
-                        .HasForeignKey("VerabreichungsprozessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Verabreichungsprozess");
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.MedikamentTherapie", b =>
@@ -793,11 +693,6 @@ namespace robodoc.backend.Migrations
             modelBuilder.Entity("Robodoc.Data.Models.Therapieverfahren", b =>
                 {
                     b.Navigation("TherapieverfahrenDurchfuehrungen");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
-                {
-                    b.Navigation("Medikamente");
                 });
 #pragma warning restore 612, 618
         }

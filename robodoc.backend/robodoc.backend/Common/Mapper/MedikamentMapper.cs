@@ -13,10 +13,6 @@ namespace robodoc.backend.Common.Mapper
                 .ForMember(dest => dest.Einheit,
                     opt => opt.MapFrom(
                         src => (Einheiten)Enum.Parse<Einheiten>(src.Einheit)));
-
-            CreateMap<Medikament, MedikamentDTO>()
-                .ForMember(dest => dest.Verabreichungsprozess,
-                    opt => opt.MapFrom(src => src.Verabreichungsprozess.Name));
         }
     }
 }

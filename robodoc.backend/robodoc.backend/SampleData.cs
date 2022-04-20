@@ -8,7 +8,6 @@ namespace robodoc.backend
     {
         public SampleData(ModelBuilder builder)
         {
-            var verabreichung = new List<Verabreichungsprozess>();
             var medikament = new List<Medikament>();
             var therapie = new List<Therapie>();
             var therapieMedi = new List<MedikamentTherapie>();
@@ -18,34 +17,12 @@ namespace robodoc.backend
             var orte = new List<RoboOrt>();
             var activities = new List<RoboActivity>();
 
-            #region Verabreichungsprozess
-            verabreichung.Add(new Verabreichungsprozess() {Id = Guid.NewGuid(), Name = "oral"});
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "lingual" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "sublingual" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "intravenös" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "intraarteriell" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "intramuskulär" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "kutan" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "subkutan" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "intrakutan" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "perkutan" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "nasal" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "konjunktival" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "rektal" });
-            verabreichung.Add(new Verabreichungsprozess() { Id = Guid.NewGuid(), Name = "vaginal" });
-            #endregion
-
-            foreach (Verabreichungsprozess verabproz in verabreichung)
-            {
-                builder.Entity<Verabreichungsprozess>().HasData(verabproz);
-            }
-
             // maximal 4 Medikamente
             #region Medikament
             medikament.Add(new Medikament() {Id = Guid.NewGuid(),
-                Name = "Pantoloc", Einheit = Einheiten.Tabletten, VerabreichungsprozessId = verabreichung.Find(v => v.Name.Equals("lingual")).Id});
+                Name = "Pantoloc", Einheit = Einheiten.Tabletten, Verabreichungsprozess = Verabreichungsprozesse.lingual});
             medikament.Add(new Medikament() {Id = Guid.NewGuid(),
-                Name = "Daflon", Einheit = Einheiten.Tabletten, VerabreichungsprozessId = verabreichung.Find(v => v.Name.Equals("lingual")).Id});
+                Name = "Daflon", Einheit = Einheiten.Tabletten, Verabreichungsprozess = Verabreichungsprozesse.kutan});
             #endregion
 
             foreach (Medikament med  in medikament)

@@ -20,9 +20,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // add Tables
-builder.Services.AddTransient<IVerabreichungsprozessService, VerabreichungsprozessService>();
-builder.Services.AddScoped<IRepository<Verabreichungsprozess>, VerabreichungsprozessRepository>();
-
 builder.Services.AddTransient<IMedikamentService, MedikamentService>();
 builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 

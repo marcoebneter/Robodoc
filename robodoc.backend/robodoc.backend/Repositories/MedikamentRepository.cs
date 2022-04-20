@@ -14,14 +14,12 @@ namespace robodoc.backend.Repositories
 
         public IEnumerable<Medikament> GetAll()
         {
-            return _dbContext.Medikamente
-                .Include(m => m.Verabreichungsprozess);
+            return _dbContext.Medikamente;
         }
 
         public IEnumerable<Medikament> Get(Guid id)
         {
             return _dbContext.Medikamente
-                .Include(m => m.Verabreichungsprozess)
                 .Where(m => m.Id.Equals(id));
         }
 
