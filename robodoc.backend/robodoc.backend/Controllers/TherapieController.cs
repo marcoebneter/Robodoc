@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using robodoc.backend.Controllers.DTO;
+using robodoc.backend.Services.Interfaces;
+using Robodoc.Data.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,11 +12,20 @@ namespace robodoc.backend.Controllers
     [ApiController]
     public class TherapieController : ControllerBase
     {
+        private readonly ITherapieService _service;
+        private readonly IMapper _mapper;
+
+        public TherapieController(ITherapieService service, IMapper mapper)
+        {
+            _service = service;
+            _mapper = mapper;
+        }
+
         // GET: api/<TherapieController>
         [HttpGet]
-        public IEnumerable<TherapieDTO> Get()
+        public IEnumerable<Therapie> Get()
         {
-            return null;
+            return _service.GetMedikaments();
         }
 
         // GET api/<TherapieController>/5
