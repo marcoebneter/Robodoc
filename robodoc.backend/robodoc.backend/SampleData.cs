@@ -30,7 +30,7 @@ namespace robodoc.backend
                 builder.Entity<Medikament>().HasData(med);
             }
 
-            therapie.Add(new Therapie() {Id = Guid.NewGuid(), Name = "eine Therapie"});
+            therapie.Add(new Therapie() {Id = Guid.NewGuid(), Name = "Diät"});
 
             foreach (Therapie therapy in therapie)
             {
@@ -40,7 +40,7 @@ namespace robodoc.backend
             therapieMedi.Add(new MedikamentTherapie() 
                 {Id = Guid.NewGuid(),
                     MedikamentId = medikament.Find(m => m.Name.Equals("Pantoloc")).Id, 
-                    TherapieId = therapie.Find(t => t.Name.Equals("eine Therapie")).Id,
+                    TherapieId = therapie.Find(t => t.Name.Equals("Diät")).Id,
                     Menge = 5});
 
             foreach (MedikamentTherapie medikamentTherapy in therapieMedi)

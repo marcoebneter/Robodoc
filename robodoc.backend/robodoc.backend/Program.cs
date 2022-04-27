@@ -25,8 +25,9 @@ builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 
 //builder.Services.AddScoped<IRepository<MedikamentTherapie>, MedikamentRepository>();
 builder.Services.AddTransient<ITherapieService, TherapieService>();
-builder.Services.AddScoped<IRepository<Therapie>, MedikamentRepository>();
-//builder.Services.AddScoped<IRepository<Patient>, MedikamentRepository>();
+builder.Services.AddScoped<IRepository<Therapie>, TherapieRepository>();
+builder.Services.AddTransient<IPatientService, PatientService>();
+builder.Services.AddScoped<IRepository<Patient>, PatientRepository>();
 //builder.Services.AddScoped<IRepository<Therapieverfahren>, MedikamentRepository>();
 //builder.Services.AddScoped<IRepository<TherapieverfahrenDurchfuehrung>, MedikamentRepository>();
 

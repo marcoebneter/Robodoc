@@ -34,36 +34,16 @@ namespace robodoc.backend.Repositories
 
         public Patient Insert(Patient entity)
         {
-            var newPatient = new Patient()
-            {
-                Id = Guid.NewGuid(),
-                Name = entity.Name,
-                Vorname = entity.Vorname,
-                Anamnese = entity.Anamnese,
-                EintrittDatum = entity.EintrittDatum,
-                AustrittDatum = entity.AustrittDatum,
-            };
-            _dbContext.Patienten.Add(newPatient);
+            _dbContext.Patienten.Add(entity);
             _dbContext.SaveChanges();
-            return newPatient;
+            return entity;
         }
 
         public Patient Update(Patient entity)
         {
-            if (entity == null)
-            {
-                return entity;
-            }
-
-            var oldPatient = Get(entity.Id).FirstOrDefault();
-            oldPatient.Name = entity.Name;
-            oldPatient.Vorname = entity.Vorname;
-            oldPatient.Anamnese = entity.Anamnese;
-            oldPatient.EintrittDatum = entity.EintrittDatum;
-            oldPatient.AustrittDatum = entity.AustrittDatum;
-            _dbContext.Patienten.Update(oldPatient);
+            _dbContext.Patienten.Update(entity);
             _dbContext.SaveChanges();
-            return oldPatient;
+            return entity;
         }
     }
 }
