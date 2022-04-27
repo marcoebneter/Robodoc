@@ -4,21 +4,21 @@ using Robodoc.Data.Models;
 
 namespace robodoc.backend.Services
 {
-    public class MedikamentService : IMedikamentService
+    public class TherapieService : ITherapieService
     {
-        private readonly IRepository<Medikament> _repository;
+        private readonly IRepository<Therapie> _repository;
 
-        public MedikamentService(IRepository<Medikament> repository)
+        public TherapieService(IRepository<Therapie> repository)
         {
             _repository = repository;
         }
 
-        public IEnumerable<Medikament> GetMedikaments()
+        public IEnumerable<Therapie> GetMedikaments()
         {
             return _repository.GetAll();
         }
 
-        public IEnumerable<Medikament> GetMedikamentById(Guid id)
+        public IEnumerable<Therapie> GetMedikamentById(Guid id)
         {
             return _repository.Get(id);
         }
@@ -28,12 +28,12 @@ namespace robodoc.backend.Services
             _repository.Delete(id);
         }
 
-        public Medikament Insert(Medikament entity)
+        public Therapie Insert(Therapie entity)
         {
             return _repository.Insert(entity);
         }
 
-        public Medikament Update(Medikament entity)
+        public Therapie Update(Therapie entity)
         {
             return _repository.Update(entity);
         }

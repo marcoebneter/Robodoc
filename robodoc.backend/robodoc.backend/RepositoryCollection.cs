@@ -11,6 +11,7 @@ namespace robodoc.backend
         public static RepositoryCollection Instance => _instance ??= new RepositoryCollection();
 
         public IRepository<Medikament> MedikamentRepository { get; private set; }
+        public IRepository<Therapie> TherapieRepository { get; private set; }
 
         private ApplicationDbContext _dbContext { get; set; }
         public RepositoryCollection(ApplicationDbContext dbContext = null)
@@ -20,6 +21,7 @@ namespace robodoc.backend
                 _dbContext = dbContext;
 
             MedikamentRepository = new MedikamentRepository(_dbContext);
+            TherapieRepository = new TherapieRepository(_dbContext);
         }
     }
 }

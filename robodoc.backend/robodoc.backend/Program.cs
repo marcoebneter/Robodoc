@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;using robodoc.backend;
 using robodoc.backend.Common;
+using robodoc.backend.Common.Mapper;
 using robodoc.backend.Data;
 using robodoc.backend.Repositories;
 using robodoc.backend.Services;
@@ -17,13 +19,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(config =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddTransient<IVerabreichungsprozessService, VerabreichungsprozessService>();
-builder.Services.AddScoped<IRepository<Verabreichungsprozess>, VerabreichungsprozessRepository>();
-
+// add Tables
 builder.Services.AddTransient<IMedikamentService, MedikamentService>();
 builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 
+//builder.Services.AddScoped<IRepository<MedikamentTherapie>, MedikamentRepository>();
+builder.Services.AddTransient<ITherapieService, TherapieService>();
+builder.Services.AddScoped<IRepository<Therapie>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<Patient>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<Therapieverfahren>, MedikamentRepository>();
+//builder.Services.AddScoped<IRepository<TherapieverfahrenDurchfuehrung>, MedikamentRepository>();
+
+
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(Medikament));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

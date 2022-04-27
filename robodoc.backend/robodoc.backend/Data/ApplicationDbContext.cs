@@ -10,7 +10,6 @@ namespace robodoc.backend.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Verabreichungsprozess> Verabreichungsprozesse => Set<Verabreichungsprozess>();
         public DbSet<Medikament> Medikamente => Set<Medikament>();
         public DbSet<MedikamentTherapie> MedikamentTherapien => Set<MedikamentTherapie>();
         public DbSet<Therapie> Therapien => Set<Therapie>();
@@ -28,9 +27,8 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal()); // TODO evt delete
-            builder.Entity<TherapieverfahrenDurchfuehrung>()
-                .HasOne(t => t.Personal);
+            builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
+            builder.Entity<TherapieverfahrenDurchfuehrung>();
             builder.Entity<Therapieverfahren>()
                 .HasOne(t => t.Zustaendigkeit);
             builder.Entity<TherapieverfahrenDurchfuehrung>()
@@ -46,9 +44,6 @@ namespace robodoc.backend.Data
             builder.Entity<MedikamentTherapie>()
                 .HasOne(t => t.Therapie)
                 .WithMany(m => m.MedikamentTherapies);
-            builder.Entity<Medikament>()
-                .HasOne(e => e.Verabreichungsprozess)
-                .WithMany(v => v.Medikamente);
             builder.Entity<MedikamentTherapie>()
                 .HasOne(m => m.Medikament)
                 .WithMany(m => m.MedikamentTherapies);

@@ -16,7 +16,7 @@ namespace robodoc.backend.Repositories
             return _dbContext.Patienten;
         }
 
-        public IEnumerable<Patient> Get(string id)
+        public IEnumerable<Patient> Get(Guid id)
         {
             return _dbContext.Patienten.Where(p => p.Id.Equals(p));
         }
@@ -27,7 +27,7 @@ namespace robodoc.backend.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             Delete(Get(id).FirstOrDefault());
         }
@@ -36,7 +36,7 @@ namespace robodoc.backend.Repositories
         {
             var newPatient = new Patient()
             {
-                Id = new Guid().ToString(),
+                Id = Guid.NewGuid(),
                 Name = entity.Name,
                 Vorname = entity.Vorname,
                 Anamnese = entity.Anamnese,
@@ -50,7 +50,7 @@ namespace robodoc.backend.Repositories
 
         public Patient Update(Patient entity)
         {
-            if (entity == null || entity.Id == null)
+            if (entity == null)
             {
                 return entity;
             }

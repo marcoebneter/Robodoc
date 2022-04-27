@@ -14,15 +14,13 @@ namespace robodoc.backend.Repositories
 
         public IEnumerable<Medikament> GetAll()
         {
-            return _dbContext.Medikamente
-                .Include(m => m.Verabreichungsprozess);
+            return _dbContext.Medikamente;
         }
 
-        public IEnumerable<Medikament> Get(string id)
+        public IEnumerable<Medikament> Get(Guid id)
         {
             return _dbContext.Medikamente
-                .Include(m => m.Verabreichungsprozess)
-                .Where(m => m.Id.Equals(m));
+                .Where(m => m.Id.Equals(id));
         }
 
         public void Delete(Medikament entity)
@@ -31,41 +29,23 @@ namespace robodoc.backend.Repositories
             _dbContext.SaveChanges();
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             Delete(Get(id).FirstOrDefault());
         }
 
         public Medikament Insert(Medikament entity)
         {
-            var newMedikament = new Medikament
-            {
-                Id = new Guid().ToString(),
-                Name = entity.Name,
-                Einheit = entity.Einheit,
-                VerabreichungsprozessId = entity.VerabreichungsprozessId
-            };
-            _dbContext.Medikamente.Add(newMedikament);
+            _dbContext.Medikamente.Add(entity);
             _dbContext.SaveChanges();
-            return newMedikament;
+            return entity;
         }
 
         public Medikament Update(Medikament entity)
         {
-            if (entity == null || entity.Id == null)
-            {
-                return entity;
-            }
-
-            var oldMedikament = Get(entity.Id).FirstOrDefault();
-            oldMedikament.Name = entity.Name;
-            oldMedikament.Einheit = entity.Einheit;
-            oldMedikament.VerabreichungsprozessId = entity.VerabreichungsprozessId;
-            oldMedikament.Verabreichungsprozess =
-                _dbContext.Verabreichungsprozesse.FirstOrDefault(v => v.Id == entity.VerabreichungsprozessId);
-            _dbContext.Medikamente.Update(oldMedikament);
+            _dbContext.Medikamente.Update(entity);
             _dbContext.SaveChanges();
-            return oldMedikament;
+            return entity;
         }
     }
 }

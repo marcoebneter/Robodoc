@@ -12,7 +12,7 @@ using robodoc.backend.Data;
 namespace robodoc.backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220130135106_init")]
+    [Migration("20220420060626_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,12 +169,10 @@ namespace robodoc.backend.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -211,12 +209,10 @@ namespace robodoc.backend.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -228,8 +224,9 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivity", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -242,43 +239,52 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e90c3246-2519-4fea-8a1b-56555426a87a",
+                            Id = new Guid("b7d365bc-43a3-4cac-8ab0-9b748f0120df"),
                             Name = "warten"
                         },
                         new
                         {
-                            Id = "2418caab-bf22-4823-b4b4-c62a8415e381",
+                            Id = new Guid("6f24ab55-c547-497b-9313-d2e31cb09515"),
                             Name = "einfahren"
                         },
                         new
                         {
-                            Id = "826986ec-b21b-46fe-992a-5cf0746dc35d",
+                            Id = new Guid("abb1a1ea-f914-4846-886d-3a7485b55dee"),
                             Name = "verlassen"
                         },
                         new
                         {
-                            Id = "49277b33-f5a6-4b9d-842e-5751e9b769fa",
+                            Id = new Guid("d0ee298d-c44d-4c64-89c3-0b4ffcabd874"),
                             Name = "Medikament abgeben"
                         },
                         new
                         {
-                            Id = "0f429a96-77a8-49fd-a106-8c6a30d87dd3",
+                            Id = new Guid("12d9f03d-0814-48f0-9aa2-df2e16bdda1a"),
                             Name = "Medikament aufnehmen"
                         });
                 });
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivityStatus", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ActivityId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("ActivityId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("RoboOrtId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<DateTime>("PeriodEnd")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodEnd");
+
+                    b.Property<DateTime>("PeriodStart")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("PeriodStart");
+
+                    b.Property<Guid>("RoboOrtId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -289,13 +295,25 @@ namespace robodoc.backend.Migrations
 
                     b.HasIndex("RoboOrtId");
 
-                    b.ToTable("RoboActivityStatus");
+                    b.ToTable("RoboActivityStatus", (string)null);
+
+                    b.ToTable(tb => tb.IsTemporal(ttb =>
+                        {
+                            ttb
+                                .HasPeriodStart("PeriodStart")
+                                .HasColumnName("PeriodStart");
+                            ttb
+                                .HasPeriodEnd("PeriodEnd")
+                                .HasColumnName("PeriodEnd");
+                        }
+                    ));
                 });
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboOrt", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -308,75 +326,87 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b1821ea5-898a-4ea6-95e3-dd04ec77ec89",
+                            Id = new Guid("26fac76a-d0d1-4e5d-b835-472f662594b7"),
                             Name = "Apotheke"
                         },
                         new
                         {
-                            Id = "5a2ce2bf-6cf9-442e-bb19-8ade2e87d604",
+                            Id = new Guid("f057aae6-b938-4e98-9275-6cbeedbd5cb4"),
                             Name = "Parkposition"
                         },
                         new
                         {
-                            Id = "38dc98f0-266c-4ad6-8153-06f13d815fa7",
+                            Id = new Guid("5b400e36-dc5b-4886-b59c-22dae0ba0b54"),
                             Name = "Zimmer 1"
                         },
                         new
                         {
-                            Id = "6ca30956-b391-4edc-a0f6-bac6d220d509",
+                            Id = new Guid("bc9bb5c5-13c6-49d1-8c5b-4e49884da9b8"),
                             Name = "Zimmer 2"
                         },
                         new
                         {
-                            Id = "fd3af5fd-d842-4451-a937-e2c8ce3cad2c",
+                            Id = new Guid("e910bac0-d3ea-4462-9f95-5a1dd6ca3572"),
                             Name = "Zimmer 3"
                         },
                         new
                         {
-                            Id = "319c7787-58c3-430f-b7cc-0a188b49cafe",
+                            Id = new Guid("8f4a9fe6-0c06-415e-89be-52724f7e01cb"),
                             Name = "Zimmer 4"
                         });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.Medikament", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Einheit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Einheit")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VerabreichungsprozessId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Verabreichungsprozess")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VerabreichungsprozessId");
-
                     b.ToTable("Medikamente");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("84fc6b28-7c1d-46eb-a364-203632751225"),
+                            Einheit = 0,
+                            Name = "Pantoloc",
+                            Verabreichungsprozess = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("a6c2cce1-c492-48c9-876c-c400c75e09ed"),
+                            Einheit = 0,
+                            Name = "Daflon",
+                            Verabreichungsprozess = 6
+                        });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.MedikamentTherapie", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("MedikamentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("MedikamentId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Menge")
                         .HasColumnType("int");
 
-                    b.Property<string>("TherapieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("TherapieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -385,12 +415,22 @@ namespace robodoc.backend.Migrations
                     b.HasIndex("TherapieId");
 
                     b.ToTable("MedikamentTherapien");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("7ad80e56-b621-4ded-8151-49df77040408"),
+                            MedikamentId = new Guid("84fc6b28-7c1d-46eb-a364-203632751225"),
+                            Menge = 5,
+                            TherapieId = new Guid("661a0576-157b-4c70-8a90-7fd26b59a834")
+                        });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.Patient", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Anamnese")
                         .HasColumnType("nvarchar(max)");
@@ -412,12 +452,23 @@ namespace robodoc.backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patienten");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("daaf542c-973a-4370-97ba-71db90f2ea5a"),
+                            Anamnese = "isch en gaile siech",
+                            EintrittDatum = new DateTime(2022, 4, 20, 8, 6, 25, 620, DateTimeKind.Local).AddTicks(4576),
+                            Name = "Zingg",
+                            Vorname = "Joel"
+                        });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.Therapie", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -426,12 +477,20 @@ namespace robodoc.backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Therapien");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("661a0576-157b-4c70-8a90-7fd26b59a834"),
+                            Name = "eine Therapie"
+                        });
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.Therapieverfahren", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -439,20 +498,17 @@ namespace robodoc.backend.Migrations
                     b.Property<TimeSpan>("Intervall")
                         .HasColumnType("time");
 
-                    b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("PersonalId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TherapieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("TherapieId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -467,113 +523,21 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.TherapieverfahrenDurchfuehrung", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("PersonalId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TherapieverfahrenId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("TherapieverfahrenId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Zeitpunkt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonalId");
-
                     b.HasIndex("TherapieverfahrenId");
 
                     b.ToTable("Durchfuehrungen");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Verabreichungsprozesse");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "d974d223-d144-4ff0-8648-26a9ee0364ef",
-                            Name = "oral"
-                        },
-                        new
-                        {
-                            Id = "0386fbe2-c967-482e-be65-d712674e48b1",
-                            Name = "lingual"
-                        },
-                        new
-                        {
-                            Id = "ed276479-2299-4bfa-a4af-5ad6757fbbd8",
-                            Name = "sublingual"
-                        },
-                        new
-                        {
-                            Id = "2b55f4ce-2db3-41d5-ab8b-f0f27df364f7",
-                            Name = "intravenös"
-                        },
-                        new
-                        {
-                            Id = "7f7b0cd1-d113-4d93-9f6d-798da0a38488",
-                            Name = "intraarteriell"
-                        },
-                        new
-                        {
-                            Id = "54bdff21-8e3b-4b40-a931-dc73f365fb16",
-                            Name = "intramuskulär"
-                        },
-                        new
-                        {
-                            Id = "02d51a9d-3c66-46a1-bd7f-20a9f49088f7",
-                            Name = "kutan"
-                        },
-                        new
-                        {
-                            Id = "845891c8-962f-4c6a-888a-b27e5dd2a7f2",
-                            Name = "subkutan"
-                        },
-                        new
-                        {
-                            Id = "eab655f5-94e8-4e8e-99dc-efbb8c99769d",
-                            Name = "intrakutan"
-                        },
-                        new
-                        {
-                            Id = "2892fde2-0d99-41d3-b186-46726832911f",
-                            Name = "perkutan"
-                        },
-                        new
-                        {
-                            Id = "af212283-efda-4b5d-aab0-fe9b6e0195db",
-                            Name = "nasal"
-                        },
-                        new
-                        {
-                            Id = "a19f5dc9-3c4d-4b1e-9252-cbf78cf1f2ad",
-                            Name = "konjunktival"
-                        },
-                        new
-                        {
-                            Id = "40143096-2829-4f4e-92ef-0b7902ec7e9e",
-                            Name = "rektal"
-                        },
-                        new
-                        {
-                            Id = "713b26d5-868f-4da3-992b-d556ff9154d0",
-                            Name = "vaginal"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -646,17 +610,6 @@ namespace robodoc.backend.Migrations
                     b.Navigation("RoboOrt");
                 });
 
-            modelBuilder.Entity("Robodoc.Data.Models.Medikament", b =>
-                {
-                    b.HasOne("Robodoc.Data.Models.Verabreichungsprozess", "Verabreichungsprozess")
-                        .WithMany("Medikamente")
-                        .HasForeignKey("VerabreichungsprozessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Verabreichungsprozess");
-                });
-
             modelBuilder.Entity("Robodoc.Data.Models.MedikamentTherapie", b =>
                 {
                     b.HasOne("Robodoc.Data.Models.Medikament", "Medikament")
@@ -686,9 +639,7 @@ namespace robodoc.backend.Migrations
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Zustaendigkeit")
                         .WithMany()
-                        .HasForeignKey("PersonalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonalId");
 
                     b.HasOne("Robodoc.Data.Models.Therapie", "Therapie")
                         .WithMany("Therapieverfahren")
@@ -705,19 +656,11 @@ namespace robodoc.backend.Migrations
 
             modelBuilder.Entity("Robodoc.Data.Models.TherapieverfahrenDurchfuehrung", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Personal")
-                        .WithMany()
-                        .HasForeignKey("PersonalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Robodoc.Data.Models.Therapieverfahren", "Therapieverfahren")
                         .WithMany("TherapieverfahrenDurchfuehrungen")
                         .HasForeignKey("TherapieverfahrenId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Personal");
 
                     b.Navigation("Therapieverfahren");
                 });
@@ -752,11 +695,6 @@ namespace robodoc.backend.Migrations
             modelBuilder.Entity("Robodoc.Data.Models.Therapieverfahren", b =>
                 {
                     b.Navigation("TherapieverfahrenDurchfuehrungen");
-                });
-
-            modelBuilder.Entity("Robodoc.Data.Models.Verabreichungsprozess", b =>
-                {
-                    b.Navigation("Medikamente");
                 });
 #pragma warning restore 612, 618
         }
