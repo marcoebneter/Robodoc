@@ -16,8 +16,6 @@ namespace robodoc.backend.Data
         public DbSet<Patient> Patienten => Set<Patient>();
         public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
         public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
-        public DbSet<RoboOrt> RoboOrts => Set<RoboOrt>();
-        public DbSet<RoboActivity> RoboActivities => Set<RoboActivity>();
         public DbSet<RoboActivityStatus> RoboActivityStatus => Set<RoboActivityStatus>();
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -34,7 +32,7 @@ namespace robodoc.backend.Data
                 .HasOne(t => t.Therapie)
                 .WithMany(t => t.MedikamentTherapies);
 
-            builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
+            //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
             builder.Entity<TherapieverfahrenDurchfuehrung>();
             builder.Entity<Therapieverfahren>()
                 .HasOne(t => t.Zustaendigkeit);
