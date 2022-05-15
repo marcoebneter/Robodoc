@@ -1,10 +1,5 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
-using robodoc.backend;
 using robodoc.backend.Common;
-using robodoc.backend.Common.Mapper;
 using robodoc.backend.Data;
 using robodoc.backend.Repositories;
 using robodoc.backend.Services;
@@ -21,8 +16,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(config =>
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
         );
 });
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // add Tables
 builder.Services.AddTransient<IMedikamentService, MedikamentService>();

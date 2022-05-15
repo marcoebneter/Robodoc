@@ -7,7 +7,7 @@ namespace robodoc.backend.Data
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
-            var connectionString = "server=127.0.0.1;port=3306;user=root;password=EtaXz3qoappCC0gzbi8r;database=robodoc";
+            var connectionString = "server=127.0.0.1;port=3306;user=root;password=Eba-WEb2320;database=robodoc";
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseMySql(connectionString,
                 ServerVersion.AutoDetect(connectionString));

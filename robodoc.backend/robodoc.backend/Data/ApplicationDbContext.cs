@@ -8,7 +8,7 @@ using Robodoc.Data.Models;
 
 namespace robodoc.backend.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Medikament> Medikamente => Set<Medikament>();
         public DbSet<MedikamentTherapie> MedikamentTherapien => Set<MedikamentTherapie>();
