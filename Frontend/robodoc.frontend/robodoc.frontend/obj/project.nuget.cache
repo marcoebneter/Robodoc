@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "4tZ1z174G3k/f5BxiFhspTNEEKyLhCFjUlHHLPFX2ZWO53dsjhgzunc9VMwhIzJnEP4KAV6qpzoosx0tPCkLcg==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.15.1\\microsoft.visualstudio.azure.containers.tools.targets.1.15.1.nupkg.sha512"
+  ],
+  "logs": []
+}
