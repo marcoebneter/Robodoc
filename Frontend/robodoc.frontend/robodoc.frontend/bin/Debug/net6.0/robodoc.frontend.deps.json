@@ -8,10 +8,19 @@
     ".NETCoreApp,Version=v6.0": {
       "robodoc.frontend/1.0.0": {
         "dependencies": {
+          "AgileObjects.NetStandardPolyfills": "1.6.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.15.1"
         },
         "runtime": {
           "robodoc.frontend.dll": {}
+        }
+      },
+      "AgileObjects.NetStandardPolyfills/1.6.0": {
+        "runtime": {
+          "lib/netstandard2.0/AgileObjects.NetStandardPolyfills.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
         }
       },
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {}
@@ -22,6 +31,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AgileObjects.NetStandardPolyfills/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Izh9O0nQ9YIEJH9hBf4NeIDsSFR9c7olaI7ZPloKpotjcxXbV6wPQcG18FZ1CF3L9sKS/u9NR7mZDH9T1785mA==",
+      "path": "agileobjects.netstandardpolyfills/1.6.0",
+      "hashPath": "agileobjects.netstandardpolyfills.1.6.0.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {
       "type": "package",

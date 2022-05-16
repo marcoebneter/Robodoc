@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-//builder.Services.AddMvc(config => config.EnableEndpointRouting = false);
-//builder.Services.AddSession();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+builder.Services.AddMvc(config => config.EnableEndpointRouting = false);
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -15,8 +18,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//app.UseMvc();
-//app.UseSession();
+app.UseAuthentication();
+app.UseSession();
+app.UseMvc();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

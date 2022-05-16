@@ -22,3 +22,5 @@ C:\Git\Schule\Robodoc\Frontend\robodoc.frontend\robodoc.frontend\obj\Debug\net6.
 C:\Git\Schule\Robodoc\Frontend\robodoc.frontend\robodoc.frontend\obj\Debug\net6.0\robodoc.frontend.pdb
 C:\Git\Schule\Robodoc\Frontend\robodoc.frontend\robodoc.frontend\obj\Debug\net6.0\robodoc.frontend.genruntimeconfig.cache
 C:\Git\Schule\Robodoc\Frontend\robodoc.frontend\robodoc.frontend\obj\Debug\net6.0\ref\robodoc.frontend.dll
+C:\git\Schule\Robodoc\Frontend\robodoc.frontend\robodoc.frontend\bin\Debug\net6.0\AgileObjects.NetStandardPolyfills.dll
+C:\git\Schule\Robodoc\Frontend\robodoc.frontend\robodoc.frontend\obj\Debug\net6.0\robodoc.frontend.csproj.CopyComplete

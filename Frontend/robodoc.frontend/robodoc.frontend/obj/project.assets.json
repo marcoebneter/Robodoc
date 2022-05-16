@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "AgileObjects.NetStandardPolyfills/1.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/AgileObjects.NetStandardPolyfills.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AgileObjects.NetStandardPolyfills.dll": {}
+        }
+      },
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {
         "type": "package",
         "build": {
@@ -12,6 +21,26 @@
     }
   },
   "libraries": {
+    "AgileObjects.NetStandardPolyfills/1.6.0": {
+      "sha512": "Izh9O0nQ9YIEJH9hBf4NeIDsSFR9c7olaI7ZPloKpotjcxXbV6wPQcG18FZ1CF3L9sKS/u9NR7mZDH9T1785mA==",
+      "type": "package",
+      "path": "agileobjects.netstandardpolyfills/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "agileobjects.netstandardpolyfills.1.6.0.nupkg.sha512",
+        "agileobjects.netstandardpolyfills.nuspec",
+        "lib/net35/AgileObjects.NetStandardPolyfills.dll",
+        "lib/net35/AgileObjects.NetStandardPolyfills.xml",
+        "lib/net40/AgileObjects.NetStandardPolyfills.dll",
+        "lib/net40/AgileObjects.NetStandardPolyfills.xml",
+        "lib/netstandard1.0/AgileObjects.NetStandardPolyfills.dll",
+        "lib/netstandard1.0/AgileObjects.NetStandardPolyfills.xml",
+        "lib/netstandard2.0/AgileObjects.NetStandardPolyfills.dll",
+        "lib/netstandard2.0/AgileObjects.NetStandardPolyfills.xml"
+      ]
+    },
     "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.15.1": {
       "sha512": "dcsF7rjxvMnqtfckpzWYvBsZsJD51yQVHSSgd2EN5/CJ/zQigJrfo313lvAwf0VL9ZOHLnJthuboadjnBAU7Ng==",
       "type": "package",
@@ -95,6 +124,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "AgileObjects.NetStandardPolyfills >= 1.6.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.15.1"
     ]
   },
@@ -104,11 +134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
+      "projectUniqueName": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
       "projectName": "robodoc.frontend",
-      "projectPath": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
+      "projectPath": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
       "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-      "outputPath": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\obj\\",
+      "outputPath": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -137,6 +167,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "AgileObjects.NetStandardPolyfills": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.15.1, )"

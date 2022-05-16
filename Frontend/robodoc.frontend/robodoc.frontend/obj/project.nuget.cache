@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4tZ1z174G3k/f5BxiFhspTNEEKyLhCFjUlHHLPFX2ZWO53dsjhgzunc9VMwhIzJnEP4KAV6qpzoosx0tPCkLcg==",
+  "dgSpecHash": "u0e2B2z8TurVxD933fphX2PC0ITGHOw12Vt7tXMzXRlZwN8P46VXckD4ZcYelOGCDSthzRmU4ik+zSpk6TY9OQ==",
   "success": true,
-  "projectFilePath": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
+  "projectFilePath": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\marco\\.nuget\\packages\\agileobjects.netstandardpolyfills\\1.6.0\\agileobjects.netstandardpolyfills.1.6.0.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.15.1\\microsoft.visualstudio.azure.containers.tools.targets.1.15.1.nupkg.sha512"
   ],
   "logs": []

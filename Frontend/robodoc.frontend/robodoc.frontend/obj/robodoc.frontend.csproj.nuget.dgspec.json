@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj": {}
+    "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj": {}
   },
   "projects": {
-    "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj": {
+    "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
+        "projectUniqueName": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
         "projectName": "robodoc.frontend",
-        "projectPath": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
+        "projectPath": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\robodoc.frontend.csproj",
         "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\obj\\",
+        "outputPath": "C:\\git\\Schule\\Robodoc\\Frontend\\robodoc.frontend\\robodoc.frontend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\marco\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AgileObjects.NetStandardPolyfills": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.15.1, )"
