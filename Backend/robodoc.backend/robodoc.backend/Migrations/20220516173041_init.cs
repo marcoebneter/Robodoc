@@ -13,41 +13,6 @@ namespace robodoc.backend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "IdentityUser",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NormalizedUserName = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NormalizedEmail = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SecurityStamp = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ConcurrencyStamp = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PhoneNumber = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityUser", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Medikamente",
                 columns: table => new
                 {
@@ -81,6 +46,23 @@ namespace robodoc.backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patienten", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Personals",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Username = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Password = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IsArzt = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Personals", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -189,22 +171,29 @@ namespace robodoc.backend.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Intervall = table.Column<TimeSpan>(type: "time(6)", nullable: false),
                     PatientId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    PersonalId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PersonalId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ArztId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     TherapieId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Therapieverfahren", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Therapieverfahren_IdentityUser_PersonalId",
-                        column: x => x.PersonalId,
-                        principalTable: "IdentityUser",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Therapieverfahren_Patienten_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patienten",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Therapieverfahren_Personals_ArztId",
+                        column: x => x.ArztId,
+                        principalTable: "Personals",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Therapieverfahren_Personals_PersonalId",
+                        column: x => x.PersonalId,
+                        principalTable: "Personals",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -231,7 +220,8 @@ namespace robodoc.backend.Migrations
                         name: "FK_Durchfuehrungen_Therapieverfahren_TherapieverfahrenId",
                         column: x => x.TherapieverfahrenId,
                         principalTable: "Therapieverfahren",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -240,25 +230,25 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Einheit", "Name", "Verabreichungsprozess" },
                 values: new object[,]
                 {
-                    { new Guid("2513513c-2e8d-41f7-aff6-e453eed9e787"), 0, "Pantoloc", 1 },
-                    { new Guid("9572a612-7507-4b5b-8010-cb297f405350"), 0, "Daflon", 6 }
+                    { new Guid("1eadca3b-e296-4140-8d19-e8e3e060a932"), 0, "Pantoloc", 1 },
+                    { new Guid("b991718c-993f-4e5a-9456-187f9f9ed026"), 0, "Daflon", 6 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Patienten",
                 columns: new[] { "Id", "Anamnese", "AustrittDatum", "EintrittDatum", "Name", "Vorname", "Zimmer" },
-                values: new object[] { new Guid("52a7ab67-95c8-4d50-aac8-799696c9c7f6"), "isch en gaile siech", null, new DateTime(2022, 5, 15, 13, 49, 20, 817, DateTimeKind.Local).AddTicks(1481), "Zingg", "Joel", 0 });
+                values: new object[] { new Guid("82193335-8a66-4c5e-92b1-c9907acfe71f"), "isch en gaile siech", null, new DateTime(2022, 5, 16, 19, 30, 40, 996, DateTimeKind.Local).AddTicks(1127), "Zingg", "Joel", 0 });
 
             migrationBuilder.InsertData(
                 table: "RoboActivity",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("06a51e21-46c5-4172-bfb1-4a0a2f5cdf57"), "warten" },
-                    { new Guid("0ba1a86a-764a-4f5e-9c32-e79995bb46f5"), "einfahren" },
-                    { new Guid("2c6d63b6-a3f7-4d15-a3cd-79b6f72a53c6"), "verlassen" },
-                    { new Guid("79d7f2d1-f48b-4652-bfa0-8705d796de6b"), "Medikament abgeben" },
-                    { new Guid("7e5eee80-da3e-4a2a-8841-57685e4a386e"), "Medikament aufnehmen" }
+                    { new Guid("02cfec77-0a69-4156-afd1-226fee6fd1cd"), "Medikament aufnehmen" },
+                    { new Guid("68c9753e-7b98-4064-8fce-52587b242231"), "verlassen" },
+                    { new Guid("7168d446-2732-417b-b4ea-82b8cb2a79d1"), "Medikament abgeben" },
+                    { new Guid("a4d92082-eca4-44e9-806a-2aca14c67453"), "einfahren" },
+                    { new Guid("d1ecbaf4-ac58-438f-954e-af296126ed2c"), "warten" }
                 });
 
             migrationBuilder.InsertData(
@@ -266,23 +256,23 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("03c3edb0-5d6a-42db-a28b-bd0c0cb363af"), "Zimmer 1" },
-                    { new Guid("080c9480-0b29-4699-9cee-182abbbe244c"), "Apotheke" },
-                    { new Guid("38b5ae0d-5bb2-4206-b35d-250bbccbccde"), "Zimmer 4" },
-                    { new Guid("404447d4-7201-430f-81f1-e378fedca3c9"), "Zimmer 2" },
-                    { new Guid("55371b5c-e086-473b-9301-0dff9ce753c1"), "Parkposition" },
-                    { new Guid("7d6b074d-1721-45d2-b68a-0737f0bea253"), "Zimmer 3" }
+                    { new Guid("036dcb0c-f639-424d-b6fc-6a3742e4a88a"), "Apotheke" },
+                    { new Guid("4b6ffeba-236c-4f4e-be65-5b1c041787e4"), "Zimmer 4" },
+                    { new Guid("6b40a360-8347-4207-99e7-3480fd320386"), "Zimmer 3" },
+                    { new Guid("86c23d03-e6a7-4003-82a4-d3e8828c3d8c"), "Zimmer 1" },
+                    { new Guid("8861eefa-4235-4759-a890-2ef42f3808d5"), "Parkposition" },
+                    { new Guid("a6cf04af-ef7d-457a-94d6-44aa5c56012a"), "Zimmer 2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Therapien",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { new Guid("3b7d6c7e-7fa4-47ce-a6c9-ede46836a6c4"), "Diät" });
+                values: new object[] { new Guid("f3a55eb6-7b71-49d1-a99e-c6eeb31f10e4"), "Diät" });
 
             migrationBuilder.InsertData(
                 table: "MedikamentTherapien",
                 columns: new[] { "Id", "MedikamentId", "Menge", "TherapieId" },
-                values: new object[] { new Guid("9d99be3b-b6e5-49a1-b699-82257bb0e795"), new Guid("2513513c-2e8d-41f7-aff6-e453eed9e787"), 5, new Guid("3b7d6c7e-7fa4-47ce-a6c9-ede46836a6c4") });
+                values: new object[] { new Guid("b1152b78-60dd-4d4d-896c-1720fb34adcf"), new Guid("1eadca3b-e296-4140-8d19-e8e3e060a932"), 5, new Guid("f3a55eb6-7b71-49d1-a99e-c6eeb31f10e4") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Durchfuehrungen_TherapieverfahrenId",
@@ -308,6 +298,11 @@ namespace robodoc.backend.Migrations
                 name: "IX_RoboActivityStatus_RoboOrtId",
                 table: "RoboActivityStatus",
                 column: "RoboOrtId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Therapieverfahren_ArztId",
+                table: "Therapieverfahren",
+                column: "ArztId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Therapieverfahren_PatientId",
@@ -349,10 +344,10 @@ namespace robodoc.backend.Migrations
                 name: "RoboOrt");
 
             migrationBuilder.DropTable(
-                name: "IdentityUser");
+                name: "Patienten");
 
             migrationBuilder.DropTable(
-                name: "Patienten");
+                name: "Personals");
 
             migrationBuilder.DropTable(
                 name: "Therapien");

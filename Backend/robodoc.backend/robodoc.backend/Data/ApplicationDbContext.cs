@@ -14,6 +14,7 @@ namespace robodoc.backend.Data
         public DbSet<MedikamentTherapie> MedikamentTherapien => Set<MedikamentTherapie>();
         public DbSet<Therapie> Therapien => Set<Therapie>();
         public DbSet<Patient> Patienten => Set<Patient>();
+        public DbSet<Personal> Personals => Set<Personal>();
         public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
         public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
         public DbSet<RoboActivityStatus> RoboActivityStatus => Set<RoboActivityStatus>();
@@ -25,39 +26,7 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<MedikamentTherapie>()
-                .HasOne(t => t.Medikament)
-                .WithMany(t => t.MedikamentTherapies);
-            builder.Entity<MedikamentTherapie>()
-                .HasOne(t => t.Therapie)
-                .WithMany(t => t.MedikamentTherapies);
-
             //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
-            builder.Entity<TherapieverfahrenDurchfuehrung>();
-            builder.Entity<Therapieverfahren>()
-                .HasOne(t => t.Zustaendigkeit);
-            builder.Entity<TherapieverfahrenDurchfuehrung>()
-                .HasOne(t => t.Therapieverfahren)
-                .WithMany(t => t.TherapieverfahrenDurchfuehrungen)
-                .OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<Therapieverfahren>()
-                .HasOne(p => p.Patient)
-                .WithMany(t => t.Therapieverfahren);
-            builder.Entity<Therapieverfahren>()
-                .HasOne(t => t.Therapie)
-                .WithMany(t => t.Therapieverfahren);
-            builder.Entity<MedikamentTherapie>()
-                .HasOne(t => t.Therapie)
-                .WithMany(m => m.MedikamentTherapies);
-            builder.Entity<MedikamentTherapie>()
-                .HasOne(m => m.Medikament)
-                .WithMany(m => m.MedikamentTherapies);
-            builder.Entity<RoboActivityStatus>()
-                .HasOne(a => a.RoboOrt)
-                .WithMany(o => o.ActivityStatuses);
-            builder.Entity<RoboActivityStatus>()
-                .HasOne(a => a.RoboActivity)
-                .WithMany(a => a.ActivityStatuses);
             base.OnModelCreating(builder);
 
 #if SAMPLEDATA
