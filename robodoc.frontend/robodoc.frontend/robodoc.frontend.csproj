@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="AgileObjects.NetStandardPolyfills" Version="1.6.0" />
+    <PackageReference Include="CodeMazeNET.TextGenerator" Version="1.0.235" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
   </ItemGroup>
 
