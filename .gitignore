@@ -55,3 +55,4 @@ bin/
 obj/
 *.bak*
 node_modules/
+.idea
