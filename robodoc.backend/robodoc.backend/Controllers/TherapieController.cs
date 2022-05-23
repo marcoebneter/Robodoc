@@ -25,14 +25,14 @@ namespace robodoc.backend.Controllers
         [HttpGet]
         public IEnumerable<Therapie> Get()
         {
-            return _service.GetMedikaments();
+            return _service.GetTherapies();
         }
 
         // GET api/<TherapieController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IEnumerable<Therapie> Get(Guid id)
         {
-            return "value";
+            return _service.GetTherapieById(id);
         }
 
         // POST api/<TherapieController>

@@ -13,12 +13,12 @@ namespace robodoc.backend.Services
             _repository = repository;
         }
 
-        public IEnumerable<Therapie> GetMedikaments()
+        public IEnumerable<Therapie> GetTherapies()
         {
             return _repository.GetAll();
         }
 
-        public IEnumerable<Therapie> GetMedikamentById(Guid id)
+        public IEnumerable<Therapie> GetTherapieById(Guid id)
         {
             return _repository.Get(id);
         }

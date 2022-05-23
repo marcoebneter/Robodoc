@@ -1,0 +1,21 @@
+﻿@inherits LayoutComponentBase
+
+<header>
+</header>
+
+<nav>
+    <a href="masterlist">Master Episode List</a>
+    <a href="search">Search</a>
+    <a href="new">Add Episode</a>
+</nav>
+
+@Body
+
+<footer>
+    @TrademarkMessage
+</footer>
+
+@code {
+    public string TrademarkMessage { get; set; } = 
+        "Robodoc is a group of clever people who made this Project only for the School";
+}

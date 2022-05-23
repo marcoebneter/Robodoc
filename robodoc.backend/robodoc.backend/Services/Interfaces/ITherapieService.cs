@@ -4,8 +4,8 @@ namespace robodoc.backend.Services.Interfaces
 {
     public interface ITherapieService
     {
-        IEnumerable<Therapie> GetMedikaments();
-        IEnumerable<Therapie> GetMedikamentById(Guid id);
+        IEnumerable<Therapie> GetTherapies();
+        IEnumerable<Therapie> GetTherapieById(Guid id);
         void Delete(Guid id);
         Therapie Insert(Therapie entity);
         Therapie Update(Therapie entity);

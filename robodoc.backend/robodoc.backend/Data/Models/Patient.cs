@@ -13,6 +13,8 @@ namespace Robodoc.Data.Models
         [Required]
         public string Vorname { get; set; }
         [Required]
+        public int Zimmer { get; set; }
+        [Required]
         public DateTime EintrittDatum { get; set; }
 #nullable enable
         public DateTime? AustrittDatum { get; set; }

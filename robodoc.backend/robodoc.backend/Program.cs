@@ -1,8 +1,5 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;using robodoc.backend;
+using Microsoft.EntityFrameworkCore;
 using robodoc.backend.Common;
-using robodoc.backend.Common.Mapper;
 using robodoc.backend.Data;
 using robodoc.backend.Repositories;
 using robodoc.backend.Services;
@@ -14,10 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(config =>
 {
-    config.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    config.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+        );
 });
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // add Tables
 builder.Services.AddTransient<IMedikamentService, MedikamentService>();
@@ -25,8 +23,9 @@ builder.Services.AddScoped<IRepository<Medikament>, MedikamentRepository>();
 
 //builder.Services.AddScoped<IRepository<MedikamentTherapie>, MedikamentRepository>();
 builder.Services.AddTransient<ITherapieService, TherapieService>();
-builder.Services.AddScoped<IRepository<Therapie>, MedikamentRepository>();
-//builder.Services.AddScoped<IRepository<Patient>, MedikamentRepository>();
+builder.Services.AddScoped<IRepository<Therapie>, TherapieRepository>();
+builder.Services.AddTransient<IPatientService, PatientService>();
+builder.Services.AddScoped<IRepository<Patient>, PatientRepository>();
 //builder.Services.AddScoped<IRepository<Therapieverfahren>, MedikamentRepository>();
 //builder.Services.AddScoped<IRepository<TherapieverfahrenDurchfuehrung>, MedikamentRepository>();
 
