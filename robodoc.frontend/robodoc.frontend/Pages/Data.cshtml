@@ -1,0 +1,34 @@
+﻿@page
+@model robodoc.frontend.Pages.DataModel
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Data</title>
+</head>
+<body>
+    <h1>Edit Data</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Einheit</th>
+                    <th>Verabreichungsprozess</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+                <tr>
+                    <td>@Model.medi.id</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

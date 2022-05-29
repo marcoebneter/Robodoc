@@ -32,9 +32,9 @@ namespace robodoc.backend.Controllers
 
         // GET api/<MedikamentController>/5
         [HttpGet("{id}")]
-        public IEnumerable<MedikamentDTO> Get(Guid id)
+        public IEnumerable<Medikament> Get(Guid id)
         {
-            return _service.GetMedikamentById(id).Select(medikament => _mapper.Map<MedikamentDTO>(medikament));
+            return _service.GetMedikamentById(id);
         }
 
         // POST api/<MedikamentController>

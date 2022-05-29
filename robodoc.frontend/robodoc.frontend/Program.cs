@@ -7,6 +7,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 builder.Services.AddMvc(config => config.EnableEndpointRouting = false);
 builder.Services.AddSession();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

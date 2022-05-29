@@ -20,12 +20,9 @@ namespace robodoc.frontend.Pages
 
         public IActionResult OnPost()
         {
-            if (Username == null || Password == null)
-            {
-                Msg = "Invalid";
-                return Page();
-            }
-            else if (Username.Equals("abc") && Password.Equals("123"))
+            Username = Username ?? string.Empty;
+            Password = Password ?? string.Empty;
+            if (Username.Equals("abc") && Password.Equals("123"))
             {
                 var identity = new ClaimsIdentity(new[]
                 {
