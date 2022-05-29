@@ -1,0 +1,40 @@
+﻿@page
+@model robodoc.frontend.Pages.MedikamentModel
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Medikamente</title>
+</head>
+<body>
+    <h1>Medikamente</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Einheit</th>
+                    <th>Verabreichungsprozess</th>
+                </tr>
+            </thead>
+            <tbody id="data" contenteditable="true" spellcheck="false">
+                @foreach (var item in @Model.medikament) {
+                <tr >
+                    <td>@Html.DisplayFor(medi => item.id)</td>
+                    <td>@Html.DisplayFor(medi => item.name)</td>
+                    <td>@Html.DisplayFor(medi => item.einheit)</td>
+                    <td>@Html.DisplayFor(medi => item.verabreichungsprozess)</td>
+              </tr>
+                }
+            </tbody>
+        </table>
+        <button onclick="@Model.Add()">Add</button>
+    </div>
+</body>
+</html>
