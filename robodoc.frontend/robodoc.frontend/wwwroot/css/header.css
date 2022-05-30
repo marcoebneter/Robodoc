@@ -26,20 +26,17 @@ header {
     float: right;
     width: 70%;
     height: 100%;
-    margin: none;
 }
 
 #menu ul {
     text-align: center;
     float: right;
-    margin: none;
     background: #0074D9;
+	border-radius: 5px;
 }
 
 #menu li {
     display: inline-block;
-    padding: none;
-    margin: none;
 }
 
 #menu li a, #menu li span {

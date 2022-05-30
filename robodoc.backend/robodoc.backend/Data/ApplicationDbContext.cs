@@ -1,7 +1,5 @@
 ﻿#define SAMPLEDATA
 
-using System.Data.Common;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using robodoc.backend.Data.Models;
 using Robodoc.Data.Models;
@@ -26,6 +24,14 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<MedikamentTherapie>()
+                .HasOne(t => t.Therapie)
+                .WithMany(t => t.MedikamentTherapies)
+                .HasForeignKey(t => t.TherapieId);
+            //builder.Entity<MedikamentTherapie>()
+            //    .HasOne(t => t.Medikament)
+            //    .WithMany(m => m.MedikamentTherapies)
+            //    .HasForeignKey(t => t.MedikamentId);
             //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
             base.OnModelCreating(builder);
 

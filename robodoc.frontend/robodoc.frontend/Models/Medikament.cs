@@ -1,4 +1,7 @@
-﻿namespace robodoc.frontend.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace robodoc.frontend.Models
 {
     public enum Einheiten
     {
@@ -30,11 +33,18 @@
         vaginal
     }
 
+    [Table("MedikamentTB")]
     public class Medikament
     {
+        [Key]
         public Guid id { get; set; }
-        public string? name { get; set; }
+        [Required(ErrorMessage = "Enter Name")]
+        public string name { get; set; }
+        [Required(ErrorMessage = "Enter Einheit")]
         public Einheiten? einheit { get; set; }
+        [Required(ErrorMessage = "Enter Verabreichungsprozess")]
         public Verabreichungsprozess? verabreichungsprozess { get; set; }
+        public IEnumerable<MedikamentTherapie> medikamentTherapies { get; set; }
+
     }
 }

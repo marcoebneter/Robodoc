@@ -47,7 +47,6 @@ namespace Robodoc.Data.Models
         public Einheiten Einheit { get; set; }
         [Required]
         public Verabreichungsprozesse Verabreichungsprozess { get; set; }
-
         public IEnumerable<MedikamentTherapie> MedikamentTherapies  { get; set; }
     }
 }

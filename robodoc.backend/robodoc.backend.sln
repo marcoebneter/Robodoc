@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "robodoc.backend", "robodoc.backend\robodoc.backend.csproj", "{1856594A-0A4F-4C66-82ED-8910DCF6E383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "robodoc.backend.tests", "robodoc.backend.tests\robodoc.backend.tests.csproj", "{9DA65B6F-C0A1-429C-B8C0-DB75201EEEC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "robodoc.backend.tests", "robodoc.backend.tests\robodoc.backend.tests.csproj", "{9DA65B6F-C0A1-429C-B8C0-DB75201EEEC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

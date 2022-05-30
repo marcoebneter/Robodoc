@@ -14,7 +14,7 @@ namespace robodoc.backend.Repositories
 
         public IEnumerable<Medikament> GetAll()
         {
-            return _dbContext.Medikamente;
+            return _dbContext.Medikamente.Where(m => true);
         }
 
         public IEnumerable<Medikament> Get(Guid id)

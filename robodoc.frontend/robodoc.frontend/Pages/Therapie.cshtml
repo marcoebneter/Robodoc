@@ -1,5 +1,5 @@
 ﻿@page
-@model robodoc.frontend.Pages.MedikamentModel
+@model robodoc.frontend.Pages.TherapieModel
 @{
     Layout = "_Layout";
 }
@@ -9,27 +9,28 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Medikamente</title>
+    <title>Therapien</title>
 </head>
 <body>
-    <h1>Medikamente</h1>
+<h1>Therapien</h1>
 <div class="container">
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Einheit</th>
-            <th>Verabreichungsprozess</th>
+            <th>Medikamente</th>
         </tr>
         </thead>
-        <tbody id="data" spellcheck="false">
-        @foreach (var item in @Model.medikament) {
+        <tbody id="data" contenteditable="true" spellcheck="false">
+        @foreach (var item in @Model.therapien) {
             <tr>
                 <td>@Html.DisplayFor(medi => item.id)</td>
                 <td>@Html.DisplayFor(medi => item.name)</td>
-                <td>@Html.DisplayFor(medi => item.einheit)</td>
-                <td>@Html.DisplayFor(medi => item.verabreichungsprozess)</td>
+                @foreach (var mt in item.medikamentTherapies)
+                {
+                    <td>@Html.DisplayFor(t => mt.medikament)</td>
+                }
             </tr>
         }
         </tbody>
