@@ -10,9 +10,11 @@ namespace Robodoc.Data.Models
         [Required]
         public int Menge { get; set; }
 
+
         [ForeignKey(nameof(Medikament))]
         public Guid MedikamentId { get; set; }
         public Medikament Medikament { get; set; }
+
 
         [ForeignKey(nameof(Therapie))]
         public Guid TherapieId { get; set; }

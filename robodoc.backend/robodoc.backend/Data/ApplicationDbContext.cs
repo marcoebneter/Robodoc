@@ -24,13 +24,14 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<MedikamentTherapie>()
-                .HasOne(t => t.Therapie)
-                .WithMany(t => t.MedikamentTherapies)
-                .HasForeignKey(t => t.TherapieId);
             //builder.Entity<MedikamentTherapie>()
-            //    .HasOne(t => t.Medikament)
+            //    .HasOne(mt => mt.Therapie)
+            //    .WithMany(t => t.MedikamentTherapies)
+            //    .HasForeignKey(mt => mt.TherapieId);
+            //builder.Entity<MedikamentTherapie>()
+            //    .HasOne(mt => mt.Medikament)
             //    .WithMany(m => m.MedikamentTherapies)
+            //    .HasForeignKey(m => m.MedikamentId);
             //    .HasForeignKey(t => t.MedikamentId);
             //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
             base.OnModelCreating(builder);

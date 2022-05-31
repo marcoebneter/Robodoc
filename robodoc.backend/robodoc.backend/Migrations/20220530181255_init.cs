@@ -230,32 +230,32 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Einheit", "Name", "Verabreichungsprozess" },
                 values: new object[,]
                 {
-                    { new Guid("185d56fa-6819-4e2e-b7af-7c6d61897ffb"), 6, "Hepatec", 3 },
-                    { new Guid("29f8758c-d10d-4bf0-adf1-009ef1c80b68"), 0, "Pantoloc", 1 },
-                    { new Guid("74e12378-7cd6-4d98-b00f-97885fd3c6c2"), 0, "Daflon", 6 },
-                    { new Guid("c6c31fc4-4b47-46e7-9548-5c801bf2bcb2"), 1, "Vivotif", 1 }
+                    { new Guid("4758a374-e813-4607-a556-f9f9296d18d2"), 0, "Pantoloc", 1 },
+                    { new Guid("485f7c40-4e00-4aaa-8582-05209e9aff03"), 0, "Daflon", 6 },
+                    { new Guid("50a6c378-efd8-4198-96d0-1230444801fe"), 1, "Vivotif", 1 },
+                    { new Guid("dff36d55-0223-4f22-9e05-9e79a7ec8582"), 6, "Hepatec", 3 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Patienten",
                 columns: new[] { "Id", "Anamnese", "AustrittDatum", "EintrittDatum", "Name", "Vorname", "Zimmer" },
-                values: new object[] { new Guid("b10ff404-1c27-46e6-a61c-032ac46556a6"), "isch en gaile siech", null, new DateTime(2022, 5, 30, 19, 56, 15, 482, DateTimeKind.Local).AddTicks(2102), "Zingg", "Joel", 0 });
+                values: new object[] { new Guid("eae2b60c-1801-4168-804d-4584a2075a91"), "isch en gaile siech", null, new DateTime(2022, 5, 30, 20, 12, 54, 794, DateTimeKind.Local).AddTicks(8440), "Zingg", "Joel", 0 });
 
             migrationBuilder.InsertData(
                 table: "Personals",
                 columns: new[] { "Id", "IsArzt", "Password", "Username" },
-                values: new object[] { new Guid("ed9eb9ac-81cd-4274-a807-d5c916294344"), true, "marco", "Marco" });
+                values: new object[] { new Guid("d7be4eb5-fd2f-4b8e-a4c3-3d6fd8b36280"), true, "marco", "Marco" });
 
             migrationBuilder.InsertData(
                 table: "RoboActivity",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("378d4f7b-3c1d-4657-a8b6-f3dd557cae60"), "Medikament abgeben" },
-                    { new Guid("5321d2ac-c6e9-483e-89b7-ceebaffbf923"), "Medikament aufnehmen" },
-                    { new Guid("75102655-24ff-4afa-a913-609ae0e4fc45"), "verlassen" },
-                    { new Guid("776dc015-ee79-4113-9f7f-7629051c0a58"), "einfahren" },
-                    { new Guid("7ec7b5ce-b2a9-45e8-8967-7fcad5821053"), "warten" }
+                    { new Guid("0026df0d-c78d-4432-b01d-1e86afc500d4"), "Medikament abgeben" },
+                    { new Guid("123d9bc3-2a99-4d06-bfa4-7073e1f37a85"), "Medikament aufnehmen" },
+                    { new Guid("33c357a6-4891-4f41-b77e-0f8edd27624a"), "einfahren" },
+                    { new Guid("63940645-71cd-4222-9dd2-ed50814d027e"), "verlassen" },
+                    { new Guid("9b4e6ccc-f254-4e3d-889f-14e1bd921a57"), "warten" }
                 });
 
             migrationBuilder.InsertData(
@@ -263,12 +263,12 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("0b6af1c0-e419-4413-9d2e-c8bd203a3305"), "Zimmer 4" },
-                    { new Guid("140d0611-80f2-4cb5-ad0c-27ece47ce20a"), "Zimmer 1" },
-                    { new Guid("455ca878-29e7-4bdb-ab87-15aa24e32b52"), "Apotheke" },
-                    { new Guid("7ec83f23-eb82-44c6-858c-807a95a9e1bd"), "Parkposition" },
-                    { new Guid("c25ec9d2-4da2-43a0-9368-accff285177d"), "Zimmer 2" },
-                    { new Guid("deca5038-6a14-4af7-8582-6dd40a42853b"), "Zimmer 3" }
+                    { new Guid("18a68353-6d4d-467f-8284-afbee69135c3"), "Zimmer 2" },
+                    { new Guid("2e3ec850-f691-4d83-b832-801db60a1062"), "Zimmer 4" },
+                    { new Guid("5d1e4a04-25a9-46b1-86de-8f8211e23f88"), "Parkposition" },
+                    { new Guid("7bfeab5b-816d-4897-bab2-60a3d0ff4f51"), "Apotheke" },
+                    { new Guid("e1dcbf5b-0783-4b77-9c52-05f6cdaed549"), "Zimmer 3" },
+                    { new Guid("f45dee8d-e185-4ee7-988b-e552fefde769"), "Zimmer 1" }
                 });
 
             migrationBuilder.InsertData(
@@ -276,10 +276,10 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("2a1fc3a7-62f0-4389-b900-5717a041a30e"), "Elektrotherapie" },
-                    { new Guid("2cfbadd5-ad2f-46b4-838b-012d1341dff8"), "Atlaslogie" },
-                    { new Guid("4dd9e065-87c0-40bd-b4e7-83a5181495d4"), "Diät" },
-                    { new Guid("64db1d49-f0f5-412b-bfb9-14d4613d5932"), "Hydrotherapie" }
+                    { new Guid("168cd5ed-6cef-4e5a-bbe0-69a1f791d047"), "Elektrotherapie" },
+                    { new Guid("5b562e08-b45f-47ea-b8e4-8b62c0934fa9"), "Atlaslogie" },
+                    { new Guid("c5b8ef9a-563c-46a1-ba25-52825a113cff"), "Hydrotherapie" },
+                    { new Guid("ed90db67-58e3-4f20-8e36-e6a8ccf6e3d5"), "Diät" }
                 });
 
             migrationBuilder.InsertData(
@@ -287,12 +287,12 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "MedikamentId", "Menge", "TherapieId" },
                 values: new object[,]
                 {
-                    { new Guid("04bcc4bd-2910-4489-ba47-8065c13c84d7"), new Guid("74e12378-7cd6-4d98-b00f-97885fd3c6c2"), 2, new Guid("2a1fc3a7-62f0-4389-b900-5717a041a30e") },
-                    { new Guid("1a4b5805-61cc-4323-a7ce-90749cb2441b"), new Guid("74e12378-7cd6-4d98-b00f-97885fd3c6c2"), 3, new Guid("4dd9e065-87c0-40bd-b4e7-83a5181495d4") },
-                    { new Guid("8a4e84a9-8038-4115-a784-3c0b1eb7ff5a"), new Guid("c6c31fc4-4b47-46e7-9548-5c801bf2bcb2"), 5, new Guid("64db1d49-f0f5-412b-bfb9-14d4613d5932") },
-                    { new Guid("9b709c46-db76-4352-b373-a7f9add3aec3"), new Guid("c6c31fc4-4b47-46e7-9548-5c801bf2bcb2"), 1, new Guid("2a1fc3a7-62f0-4389-b900-5717a041a30e") },
-                    { new Guid("ae666592-09d1-430b-8c44-922b63874d19"), new Guid("29f8758c-d10d-4bf0-adf1-009ef1c80b68"), 5, new Guid("4dd9e065-87c0-40bd-b4e7-83a5181495d4") },
-                    { new Guid("b7e70be0-96eb-4706-b225-b495217d5ce9"), new Guid("185d56fa-6819-4e2e-b7af-7c6d61897ffb"), 2, new Guid("2cfbadd5-ad2f-46b4-838b-012d1341dff8") }
+                    { new Guid("43b389f4-46de-4835-98b6-4fdd19b83d34"), new Guid("50a6c378-efd8-4198-96d0-1230444801fe"), 5, new Guid("c5b8ef9a-563c-46a1-ba25-52825a113cff") },
+                    { new Guid("9356344c-275f-4728-a3e1-7319d8e71d1e"), new Guid("485f7c40-4e00-4aaa-8582-05209e9aff03"), 3, new Guid("ed90db67-58e3-4f20-8e36-e6a8ccf6e3d5") },
+                    { new Guid("b8cefbfe-5ca7-4eae-baef-a38972f758be"), new Guid("50a6c378-efd8-4198-96d0-1230444801fe"), 1, new Guid("168cd5ed-6cef-4e5a-bbe0-69a1f791d047") },
+                    { new Guid("bab5013e-7acd-4c22-a862-d048c99a10b3"), new Guid("4758a374-e813-4607-a556-f9f9296d18d2"), 5, new Guid("ed90db67-58e3-4f20-8e36-e6a8ccf6e3d5") },
+                    { new Guid("c273af37-2cd0-41fc-b7ba-a8255673cd12"), new Guid("dff36d55-0223-4f22-9e05-9e79a7ec8582"), 2, new Guid("5b562e08-b45f-47ea-b8e4-8b62c0934fa9") },
+                    { new Guid("d58989af-cd5c-4738-955d-15702b31919e"), new Guid("485f7c40-4e00-4aaa-8582-05209e9aff03"), 2, new Guid("168cd5ed-6cef-4e5a-bbe0-69a1f791d047") }
                 });
 
             migrationBuilder.CreateIndex(

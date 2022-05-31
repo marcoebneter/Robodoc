@@ -13,7 +13,8 @@ namespace robodoc.backend.Repositories
 
         public IEnumerable<Therapie> GetAll()
         {
-            return _dbContext.Therapien;
+            var t = _dbContext.MedikamentTherapien.Include(t => t.Medikament);
+            return null;
         }
 
         public IEnumerable<Therapie> Get(Guid id)
