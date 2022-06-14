@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using robodoc.backend.Common.Mapper;
-using robodoc.backend.Controllers.DTO;
 using robodoc.backend.Services.Interfaces;
 using Robodoc.Data.Models;
 
@@ -39,7 +37,7 @@ namespace robodoc.backend.Controllers
 
         // POST api/<MedikamentController>
         [HttpPost]
-        public Medikament Post([FromBody] MedikamentDTO entity)
+        public Medikament Post([FromBody] Medikament entity)
         {
             return _service.Insert(_mapper.Map<Medikament>(entity));
         }

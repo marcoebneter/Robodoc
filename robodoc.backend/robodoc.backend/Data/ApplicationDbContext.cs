@@ -12,10 +12,10 @@ namespace robodoc.backend.Data
         public DbSet<MedikamentTherapie> MedikamentTherapien => Set<MedikamentTherapie>();
         public DbSet<Therapie> Therapien => Set<Therapie>();
         public DbSet<Patient> Patienten => Set<Patient>();
-        public DbSet<Personal> Personals => Set<Personal>();
-        public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
-        public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
-        public DbSet<RoboActivityStatus> RoboActivityStatus => Set<RoboActivityStatus>();
+        //public DbSet<Personal> Personals => Set<Personal>();
+        //public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
+        //public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
+        //public DbSet<RoboActivityStatus> RoboActivityStatus => Set<RoboActivityStatus>();
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -24,6 +24,9 @@ namespace robodoc.backend.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //builder.Entity<Therapie>()
+            //    .HasMany(t => t.MedikamentTherapies)
+            //    .WithOne(f => f.Therapie);
             //builder.Entity<MedikamentTherapie>()
             //    .HasOne(mt => mt.Therapie)
             //    .WithMany(t => t.MedikamentTherapies)
@@ -34,10 +37,10 @@ namespace robodoc.backend.Data
             //    .HasForeignKey(m => m.MedikamentId);
             //    .HasForeignKey(t => t.MedikamentId);
             //builder.Entity<RoboActivityStatus>().ToTable("RoboActivityStatus", e => e.IsTemporal());
-            base.OnModelCreating(builder);
+            //base.OnModelCreating(builder);
 
 #if SAMPLEDATA
-            var sampleData = new SampleData(builder);
+            //var sampleData = new SampleData(builder);
 #endif
         }
     }

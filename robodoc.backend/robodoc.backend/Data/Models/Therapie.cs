@@ -10,6 +10,6 @@ namespace Robodoc.Data.Models
         public string Name { get; set; }
 
         public IEnumerable<MedikamentTherapie> MedikamentTherapies { get; set; }
-        public IEnumerable<Therapieverfahren> Therapieverfahren { get; set; }
+        //public IEnumerable<Therapieverfahren> Therapieverfahren { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using robodoc.backend.Controllers.DTO;
 using robodoc.backend.Services.Interfaces;
 using Robodoc.Data.Models;
 
