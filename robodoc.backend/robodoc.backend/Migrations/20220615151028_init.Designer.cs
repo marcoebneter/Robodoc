@@ -11,7 +11,7 @@ using robodoc.backend.Data;
 namespace robodoc.backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220614083245_init")]
+    [Migration("20220615151028_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,12 +40,12 @@ namespace robodoc.backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personals");
+                    b.ToTable("Personal");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e38cc348-b847-4753-8aaf-ac4380ff6e5d"),
+                            Id = new Guid("5958e5f5-c8a8-4751-ab89-7104ff4d0ea1"),
                             IsArzt = true,
                             Password = "marco",
                             Username = "Marco"
@@ -69,27 +69,27 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2b81e33b-17a4-493e-938a-8e33b3041a42"),
+                            Id = new Guid("fc51587d-4270-47fe-b751-f994dbfd673a"),
                             Name = "warten"
                         },
                         new
                         {
-                            Id = new Guid("476b3a0e-f1ed-4405-ad2e-4fc659a76970"),
+                            Id = new Guid("111d27c5-d72f-4fc6-8415-1b4a6870c81f"),
                             Name = "einfahren"
                         },
                         new
                         {
-                            Id = new Guid("bc35d9ba-91e3-4e7e-ae77-6cfd07c8a86e"),
+                            Id = new Guid("ff900d5d-54ba-4aea-895d-c2fa176e6c70"),
                             Name = "verlassen"
                         },
                         new
                         {
-                            Id = new Guid("7e4de35a-66ab-4e49-a147-5c56823e3aa1"),
+                            Id = new Guid("ee226288-0e07-4ee1-b5c2-b1d119c4eb02"),
                             Name = "Medikament abgeben"
                         },
                         new
                         {
-                            Id = new Guid("11bec420-4616-4c26-9910-523557ae6503"),
+                            Id = new Guid("ce205808-d69c-4e0d-a160-abfc28ed3a5f"),
                             Name = "Medikament aufnehmen"
                         });
                 });
@@ -135,32 +135,32 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ab6111b4-6b6f-427d-9edb-b1bbeb9e2af4"),
+                            Id = new Guid("b3e990e7-750d-4b93-acab-b827b4949caa"),
                             Name = "Apotheke"
                         },
                         new
                         {
-                            Id = new Guid("cb32f71a-d688-4bb0-8937-bfb7ade1bf88"),
+                            Id = new Guid("4ff91abb-aa89-438a-b372-08cea1aa2d1c"),
                             Name = "Parkposition"
                         },
                         new
                         {
-                            Id = new Guid("9b2799c1-b0bb-4a40-87ed-7b5cdad3ec8d"),
+                            Id = new Guid("e300980c-e256-4a95-bd57-e8c25ef03fe8"),
                             Name = "Zimmer 1"
                         },
                         new
                         {
-                            Id = new Guid("6c0a9ebc-793b-42ab-95f9-2ca676269228"),
+                            Id = new Guid("fe21a516-21a8-49fc-be21-52501e68995f"),
                             Name = "Zimmer 2"
                         },
                         new
                         {
-                            Id = new Guid("282f0ccf-d16b-40d4-91aa-d9163045b13f"),
+                            Id = new Guid("38de3dea-05cc-434f-a80c-b2bab69d3b1f"),
                             Name = "Zimmer 3"
                         },
                         new
                         {
-                            Id = new Guid("8beb8967-df40-4741-8d9f-b0dac6f1e7ac"),
+                            Id = new Guid("ebe91e3b-4cd2-4606-85d5-94ce6bcba347"),
                             Name = "Zimmer 4"
                         });
                 });
@@ -188,28 +188,28 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e73fc593-f083-4773-b03b-6813b4055a1a"),
+                            Id = new Guid("9a2af162-ff10-425c-a118-c9ee5847a19e"),
                             Einheit = 0,
                             Name = "Pantoloc",
                             Verabreichungsprozess = 1
                         },
                         new
                         {
-                            Id = new Guid("57983716-ee82-4492-986f-707fcfec90f1"),
+                            Id = new Guid("a2a14aea-beb8-4fa2-80bf-ed6aab87920a"),
                             Einheit = 0,
                             Name = "Daflon",
                             Verabreichungsprozess = 6
                         },
                         new
                         {
-                            Id = new Guid("de033ef6-fdc9-4036-a2ec-fdee4950bb70"),
+                            Id = new Guid("dd9c72f8-4813-44f2-a044-d019a02c7126"),
                             Einheit = 1,
                             Name = "Vivotif",
                             Verabreichungsprozess = 1
                         },
                         new
                         {
-                            Id = new Guid("6fae7988-0b53-42a7-9afa-67a05cf03514"),
+                            Id = new Guid("f495af6d-028c-4f87-8389-3a1daf5d32ad"),
                             Einheit = 6,
                             Name = "Hepatec",
                             Verabreichungsprozess = 3
@@ -242,45 +242,45 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8eeaba4e-fb19-40d9-b0c9-232af9b8bc78"),
-                            MedikamentId = new Guid("e73fc593-f083-4773-b03b-6813b4055a1a"),
+                            Id = new Guid("42edb2fa-fd3a-413e-9018-e1e0ee9531de"),
+                            MedikamentId = new Guid("9a2af162-ff10-425c-a118-c9ee5847a19e"),
                             Menge = 5,
-                            TherapieId = new Guid("47c7407e-eff5-4b4f-88e1-003009a0cd8d")
+                            TherapieId = new Guid("83760435-0110-4dac-89f6-d659c2f18881")
                         },
                         new
                         {
-                            Id = new Guid("2874d8de-ae55-4f7c-b513-b7d35702aaf4"),
-                            MedikamentId = new Guid("57983716-ee82-4492-986f-707fcfec90f1"),
+                            Id = new Guid("d7679f96-1c92-4a8d-b367-226a78d4b9c6"),
+                            MedikamentId = new Guid("a2a14aea-beb8-4fa2-80bf-ed6aab87920a"),
                             Menge = 3,
-                            TherapieId = new Guid("47c7407e-eff5-4b4f-88e1-003009a0cd8d")
+                            TherapieId = new Guid("83760435-0110-4dac-89f6-d659c2f18881")
                         },
                         new
                         {
-                            Id = new Guid("24838c3b-b3b8-4319-9029-186e6c0a9309"),
-                            MedikamentId = new Guid("57983716-ee82-4492-986f-707fcfec90f1"),
+                            Id = new Guid("0ce18834-8b5d-4d6d-9f24-711270b728eb"),
+                            MedikamentId = new Guid("a2a14aea-beb8-4fa2-80bf-ed6aab87920a"),
                             Menge = 2,
-                            TherapieId = new Guid("ee859e92-0278-4d33-8ae7-2ce3f4b96899")
+                            TherapieId = new Guid("5621ef19-b226-46e1-80bc-d10d91f15141")
                         },
                         new
                         {
-                            Id = new Guid("46cb64a3-a265-42c9-8b5d-f139301df543"),
-                            MedikamentId = new Guid("de033ef6-fdc9-4036-a2ec-fdee4950bb70"),
+                            Id = new Guid("433cdf53-3f12-46e0-b5d5-3154b2a787b5"),
+                            MedikamentId = new Guid("dd9c72f8-4813-44f2-a044-d019a02c7126"),
                             Menge = 1,
-                            TherapieId = new Guid("ee859e92-0278-4d33-8ae7-2ce3f4b96899")
+                            TherapieId = new Guid("5621ef19-b226-46e1-80bc-d10d91f15141")
                         },
                         new
                         {
-                            Id = new Guid("f2d956b0-aef2-42a0-9074-1476a759a219"),
-                            MedikamentId = new Guid("de033ef6-fdc9-4036-a2ec-fdee4950bb70"),
+                            Id = new Guid("3f56568d-6db2-418a-9098-b4cf9d703cd2"),
+                            MedikamentId = new Guid("dd9c72f8-4813-44f2-a044-d019a02c7126"),
                             Menge = 5,
-                            TherapieId = new Guid("8c33d707-ab85-4210-bd1f-8da6df53710b")
+                            TherapieId = new Guid("ded82ea3-620b-462a-87bc-bb7a821cd38b")
                         },
                         new
                         {
-                            Id = new Guid("cc167b7f-0cf1-48c2-af4f-4f37653b6c88"),
-                            MedikamentId = new Guid("6fae7988-0b53-42a7-9afa-67a05cf03514"),
+                            Id = new Guid("2ae41840-6d92-40de-9aa5-0a7761f8174c"),
+                            MedikamentId = new Guid("f495af6d-028c-4f87-8389-3a1daf5d32ad"),
                             Menge = 2,
-                            TherapieId = new Guid("12b986f0-4c2f-4cf3-a9ef-f7b085a15546")
+                            TherapieId = new Guid("1e0012f3-3e5e-489a-a574-c02e6b5e948c")
                         });
                 });
 
@@ -317,9 +317,9 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("68a6d1da-7f81-408b-b62c-53b3d2920c66"),
+                            Id = new Guid("a11ab567-7901-4b26-ab24-1abec539655a"),
                             Anamnese = "isch en gaile siech",
-                            EintrittDatum = new DateTime(2022, 6, 14, 10, 32, 44, 965, DateTimeKind.Local).AddTicks(1628),
+                            EintrittDatum = new DateTime(2022, 6, 15, 17, 10, 27, 816, DateTimeKind.Local).AddTicks(3326),
                             Name = "Zingg",
                             Vorname = "Joel",
                             Zimmer = 0
@@ -343,22 +343,22 @@ namespace robodoc.backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("47c7407e-eff5-4b4f-88e1-003009a0cd8d"),
+                            Id = new Guid("83760435-0110-4dac-89f6-d659c2f18881"),
                             Name = "Diät"
                         },
                         new
                         {
-                            Id = new Guid("ee859e92-0278-4d33-8ae7-2ce3f4b96899"),
+                            Id = new Guid("5621ef19-b226-46e1-80bc-d10d91f15141"),
                             Name = "Elektrotherapie"
                         },
                         new
                         {
-                            Id = new Guid("8c33d707-ab85-4210-bd1f-8da6df53710b"),
+                            Id = new Guid("ded82ea3-620b-462a-87bc-bb7a821cd38b"),
                             Name = "Hydrotherapie"
                         },
                         new
                         {
-                            Id = new Guid("12b986f0-4c2f-4cf3-a9ef-f7b085a15546"),
+                            Id = new Guid("1e0012f3-3e5e-489a-a574-c02e6b5e948c"),
                             Name = "Atlaslogie"
                         });
                 });
@@ -419,7 +419,7 @@ namespace robodoc.backend.Migrations
 
                     b.HasIndex("TherapieverfahrenId");
 
-                    b.ToTable("Durchfuehrungen");
+                    b.ToTable("TherapieverfahrenDurchfuehrung");
                 });
 
             modelBuilder.Entity("robodoc.backend.Data.Models.RoboActivityStatus", b =>
@@ -481,7 +481,7 @@ namespace robodoc.backend.Migrations
                         .IsRequired();
 
                     b.HasOne("Robodoc.Data.Models.Therapie", "Therapie")
-                        .WithMany("Therapieverfahren")
+                        .WithMany()
                         .HasForeignKey("TherapieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -524,8 +524,6 @@ namespace robodoc.backend.Migrations
             modelBuilder.Entity("Robodoc.Data.Models.Therapie", b =>
                 {
                     b.Navigation("MedikamentTherapies");
-
-                    b.Navigation("Therapieverfahren");
                 });
 
             modelBuilder.Entity("Robodoc.Data.Models.Therapieverfahren", b =>

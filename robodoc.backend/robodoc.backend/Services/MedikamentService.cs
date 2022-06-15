@@ -1,4 +1,5 @@
-﻿using robodoc.backend.Common;
+﻿using MQTTnet.Internal;
+using robodoc.backend.Common;
 using robodoc.backend.Services.Interfaces;
 using Robodoc.Data.Models;
 
@@ -15,6 +16,7 @@ namespace robodoc.backend.Services
 
         public IEnumerable<Medikament> GetMedikaments()
         {
+            MQTT.MqttPublish.Publish_Application_Message().RunInBackground();
             return _repository.GetAll();
         }
 

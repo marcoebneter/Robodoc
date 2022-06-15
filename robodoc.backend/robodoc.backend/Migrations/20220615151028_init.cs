@@ -50,7 +50,7 @@ namespace robodoc.backend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Personals",
+                name: "Personal",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -62,7 +62,7 @@ namespace robodoc.backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Personals", x => x.Id);
+                    table.PrimaryKey("PK_Personal", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -185,15 +185,15 @@ namespace robodoc.backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Therapieverfahren_Personals_ArztId",
+                        name: "FK_Therapieverfahren_Personal_ArztId",
                         column: x => x.ArztId,
-                        principalTable: "Personals",
+                        principalTable: "Personal",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Therapieverfahren_Personals_PersonalId",
+                        name: "FK_Therapieverfahren_Personal_PersonalId",
                         column: x => x.PersonalId,
-                        principalTable: "Personals",
+                        principalTable: "Personal",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -206,7 +206,7 @@ namespace robodoc.backend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Durchfuehrungen",
+                name: "TherapieverfahrenDurchfuehrung",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -215,9 +215,9 @@ namespace robodoc.backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Durchfuehrungen", x => x.Id);
+                    table.PrimaryKey("PK_TherapieverfahrenDurchfuehrung", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Durchfuehrungen_Therapieverfahren_TherapieverfahrenId",
+                        name: "FK_TherapieverfahrenDurchfuehrung_Therapieverfahren_Therapiever~",
                         column: x => x.TherapieverfahrenId,
                         principalTable: "Therapieverfahren",
                         principalColumn: "Id",
@@ -230,32 +230,32 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Einheit", "Name", "Verabreichungsprozess" },
                 values: new object[,]
                 {
-                    { new Guid("57983716-ee82-4492-986f-707fcfec90f1"), 0, "Daflon", 6 },
-                    { new Guid("6fae7988-0b53-42a7-9afa-67a05cf03514"), 6, "Hepatec", 3 },
-                    { new Guid("de033ef6-fdc9-4036-a2ec-fdee4950bb70"), 1, "Vivotif", 1 },
-                    { new Guid("e73fc593-f083-4773-b03b-6813b4055a1a"), 0, "Pantoloc", 1 }
+                    { new Guid("9a2af162-ff10-425c-a118-c9ee5847a19e"), 0, "Pantoloc", 1 },
+                    { new Guid("a2a14aea-beb8-4fa2-80bf-ed6aab87920a"), 0, "Daflon", 6 },
+                    { new Guid("dd9c72f8-4813-44f2-a044-d019a02c7126"), 1, "Vivotif", 1 },
+                    { new Guid("f495af6d-028c-4f87-8389-3a1daf5d32ad"), 6, "Hepatec", 3 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Patienten",
                 columns: new[] { "Id", "Anamnese", "AustrittDatum", "EintrittDatum", "Name", "Vorname", "Zimmer" },
-                values: new object[] { new Guid("68a6d1da-7f81-408b-b62c-53b3d2920c66"), "isch en gaile siech", null, new DateTime(2022, 6, 14, 10, 32, 44, 965, DateTimeKind.Local).AddTicks(1628), "Zingg", "Joel", 0 });
+                values: new object[] { new Guid("a11ab567-7901-4b26-ab24-1abec539655a"), "isch en gaile siech", null, new DateTime(2022, 6, 15, 17, 10, 27, 816, DateTimeKind.Local).AddTicks(3326), "Zingg", "Joel", 0 });
 
             migrationBuilder.InsertData(
-                table: "Personals",
+                table: "Personal",
                 columns: new[] { "Id", "IsArzt", "Password", "Username" },
-                values: new object[] { new Guid("e38cc348-b847-4753-8aaf-ac4380ff6e5d"), true, "marco", "Marco" });
+                values: new object[] { new Guid("5958e5f5-c8a8-4751-ab89-7104ff4d0ea1"), true, "marco", "Marco" });
 
             migrationBuilder.InsertData(
                 table: "RoboActivity",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("11bec420-4616-4c26-9910-523557ae6503"), "Medikament aufnehmen" },
-                    { new Guid("2b81e33b-17a4-493e-938a-8e33b3041a42"), "warten" },
-                    { new Guid("476b3a0e-f1ed-4405-ad2e-4fc659a76970"), "einfahren" },
-                    { new Guid("7e4de35a-66ab-4e49-a147-5c56823e3aa1"), "Medikament abgeben" },
-                    { new Guid("bc35d9ba-91e3-4e7e-ae77-6cfd07c8a86e"), "verlassen" }
+                    { new Guid("111d27c5-d72f-4fc6-8415-1b4a6870c81f"), "einfahren" },
+                    { new Guid("ce205808-d69c-4e0d-a160-abfc28ed3a5f"), "Medikament aufnehmen" },
+                    { new Guid("ee226288-0e07-4ee1-b5c2-b1d119c4eb02"), "Medikament abgeben" },
+                    { new Guid("fc51587d-4270-47fe-b751-f994dbfd673a"), "warten" },
+                    { new Guid("ff900d5d-54ba-4aea-895d-c2fa176e6c70"), "verlassen" }
                 });
 
             migrationBuilder.InsertData(
@@ -263,12 +263,12 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("282f0ccf-d16b-40d4-91aa-d9163045b13f"), "Zimmer 3" },
-                    { new Guid("6c0a9ebc-793b-42ab-95f9-2ca676269228"), "Zimmer 2" },
-                    { new Guid("8beb8967-df40-4741-8d9f-b0dac6f1e7ac"), "Zimmer 4" },
-                    { new Guid("9b2799c1-b0bb-4a40-87ed-7b5cdad3ec8d"), "Zimmer 1" },
-                    { new Guid("ab6111b4-6b6f-427d-9edb-b1bbeb9e2af4"), "Apotheke" },
-                    { new Guid("cb32f71a-d688-4bb0-8937-bfb7ade1bf88"), "Parkposition" }
+                    { new Guid("38de3dea-05cc-434f-a80c-b2bab69d3b1f"), "Zimmer 3" },
+                    { new Guid("4ff91abb-aa89-438a-b372-08cea1aa2d1c"), "Parkposition" },
+                    { new Guid("b3e990e7-750d-4b93-acab-b827b4949caa"), "Apotheke" },
+                    { new Guid("e300980c-e256-4a95-bd57-e8c25ef03fe8"), "Zimmer 1" },
+                    { new Guid("ebe91e3b-4cd2-4606-85d5-94ce6bcba347"), "Zimmer 4" },
+                    { new Guid("fe21a516-21a8-49fc-be21-52501e68995f"), "Zimmer 2" }
                 });
 
             migrationBuilder.InsertData(
@@ -276,10 +276,10 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("12b986f0-4c2f-4cf3-a9ef-f7b085a15546"), "Atlaslogie" },
-                    { new Guid("47c7407e-eff5-4b4f-88e1-003009a0cd8d"), "Diät" },
-                    { new Guid("8c33d707-ab85-4210-bd1f-8da6df53710b"), "Hydrotherapie" },
-                    { new Guid("ee859e92-0278-4d33-8ae7-2ce3f4b96899"), "Elektrotherapie" }
+                    { new Guid("1e0012f3-3e5e-489a-a574-c02e6b5e948c"), "Atlaslogie" },
+                    { new Guid("5621ef19-b226-46e1-80bc-d10d91f15141"), "Elektrotherapie" },
+                    { new Guid("83760435-0110-4dac-89f6-d659c2f18881"), "Diät" },
+                    { new Guid("ded82ea3-620b-462a-87bc-bb7a821cd38b"), "Hydrotherapie" }
                 });
 
             migrationBuilder.InsertData(
@@ -287,18 +287,13 @@ namespace robodoc.backend.Migrations
                 columns: new[] { "Id", "MedikamentId", "Menge", "TherapieId" },
                 values: new object[,]
                 {
-                    { new Guid("24838c3b-b3b8-4319-9029-186e6c0a9309"), new Guid("57983716-ee82-4492-986f-707fcfec90f1"), 2, new Guid("ee859e92-0278-4d33-8ae7-2ce3f4b96899") },
-                    { new Guid("2874d8de-ae55-4f7c-b513-b7d35702aaf4"), new Guid("57983716-ee82-4492-986f-707fcfec90f1"), 3, new Guid("47c7407e-eff5-4b4f-88e1-003009a0cd8d") },
-                    { new Guid("46cb64a3-a265-42c9-8b5d-f139301df543"), new Guid("de033ef6-fdc9-4036-a2ec-fdee4950bb70"), 1, new Guid("ee859e92-0278-4d33-8ae7-2ce3f4b96899") },
-                    { new Guid("8eeaba4e-fb19-40d9-b0c9-232af9b8bc78"), new Guid("e73fc593-f083-4773-b03b-6813b4055a1a"), 5, new Guid("47c7407e-eff5-4b4f-88e1-003009a0cd8d") },
-                    { new Guid("cc167b7f-0cf1-48c2-af4f-4f37653b6c88"), new Guid("6fae7988-0b53-42a7-9afa-67a05cf03514"), 2, new Guid("12b986f0-4c2f-4cf3-a9ef-f7b085a15546") },
-                    { new Guid("f2d956b0-aef2-42a0-9074-1476a759a219"), new Guid("de033ef6-fdc9-4036-a2ec-fdee4950bb70"), 5, new Guid("8c33d707-ab85-4210-bd1f-8da6df53710b") }
+                    { new Guid("0ce18834-8b5d-4d6d-9f24-711270b728eb"), new Guid("a2a14aea-beb8-4fa2-80bf-ed6aab87920a"), 2, new Guid("5621ef19-b226-46e1-80bc-d10d91f15141") },
+                    { new Guid("2ae41840-6d92-40de-9aa5-0a7761f8174c"), new Guid("f495af6d-028c-4f87-8389-3a1daf5d32ad"), 2, new Guid("1e0012f3-3e5e-489a-a574-c02e6b5e948c") },
+                    { new Guid("3f56568d-6db2-418a-9098-b4cf9d703cd2"), new Guid("dd9c72f8-4813-44f2-a044-d019a02c7126"), 5, new Guid("ded82ea3-620b-462a-87bc-bb7a821cd38b") },
+                    { new Guid("42edb2fa-fd3a-413e-9018-e1e0ee9531de"), new Guid("9a2af162-ff10-425c-a118-c9ee5847a19e"), 5, new Guid("83760435-0110-4dac-89f6-d659c2f18881") },
+                    { new Guid("433cdf53-3f12-46e0-b5d5-3154b2a787b5"), new Guid("dd9c72f8-4813-44f2-a044-d019a02c7126"), 1, new Guid("5621ef19-b226-46e1-80bc-d10d91f15141") },
+                    { new Guid("d7679f96-1c92-4a8d-b367-226a78d4b9c6"), new Guid("a2a14aea-beb8-4fa2-80bf-ed6aab87920a"), 3, new Guid("83760435-0110-4dac-89f6-d659c2f18881") }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Durchfuehrungen_TherapieverfahrenId",
-                table: "Durchfuehrungen",
-                column: "TherapieverfahrenId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MedikamentTherapien_MedikamentId",
@@ -339,13 +334,15 @@ namespace robodoc.backend.Migrations
                 name: "IX_Therapieverfahren_TherapieId",
                 table: "Therapieverfahren",
                 column: "TherapieId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TherapieverfahrenDurchfuehrung_TherapieverfahrenId",
+                table: "TherapieverfahrenDurchfuehrung",
+                column: "TherapieverfahrenId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Durchfuehrungen");
-
             migrationBuilder.DropTable(
                 name: "MedikamentTherapien");
 
@@ -353,7 +350,7 @@ namespace robodoc.backend.Migrations
                 name: "RoboActivityStatus");
 
             migrationBuilder.DropTable(
-                name: "Therapieverfahren");
+                name: "TherapieverfahrenDurchfuehrung");
 
             migrationBuilder.DropTable(
                 name: "Medikamente");
@@ -365,10 +362,13 @@ namespace robodoc.backend.Migrations
                 name: "RoboOrt");
 
             migrationBuilder.DropTable(
+                name: "Therapieverfahren");
+
+            migrationBuilder.DropTable(
                 name: "Patienten");
 
             migrationBuilder.DropTable(
-                name: "Personals");
+                name: "Personal");
 
             migrationBuilder.DropTable(
                 name: "Therapien");

@@ -29,7 +29,5 @@ namespace robodoc.frontend.Pages
                 new MediaTypeWithQualityHeaderValue("application/json"));
             return client.GetStringAsync(url);
         }
-
-
     }
 }
