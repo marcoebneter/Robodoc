@@ -34,6 +34,12 @@ namespace robodoc.backend
             services.AddTransient<ITherapieService, TherapieService>();
             services.AddScoped<IRepository<Therapie>, TherapieRepository>();
 
+            services.AddTransient<IPatientService, PatientService>();
+            services.AddScoped<IRepository<Patient>, PatientRepository>();
+
+            services.AddTransient<ITherapieverfahrenService, TherapieverfahrenService>();
+            services.AddScoped<IRepository<Therapieverfahren>, TherapieverfahrenRepository>();
+
             services.AddAutoMapper(typeof(Medikament));
 
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);

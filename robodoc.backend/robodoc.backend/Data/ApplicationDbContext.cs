@@ -13,7 +13,7 @@ namespace robodoc.backend.Data
         public DbSet<Therapie> Therapien => Set<Therapie>();
         public DbSet<Patient> Patienten => Set<Patient>();
         //public DbSet<Personal> Personals => Set<Personal>();
-        //public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
+        public DbSet<Therapieverfahren> Therapieverfahren => Set<Therapieverfahren>();
         //public DbSet<TherapieverfahrenDurchfuehrung> Durchfuehrungen => Set<TherapieverfahrenDurchfuehrung>();
         //public DbSet<RoboActivityStatus> RoboActivityStatus => Set<RoboActivityStatus>();
 

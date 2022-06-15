@@ -1,0 +1,46 @@
+﻿@page
+@model robodoc.frontend.Pages.PatientModel
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Patienten</title>
+</head>
+<body>
+<h1>Patienten</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Vornamen</th>
+            <th>Zimmer</th>
+            <td>Eintrittsdatum</td>
+            <td>Austrittsdatum</td>
+            <td>Anamnese</td>
+        </tr>
+        </thead>
+        <tbody id="data" spellcheck="false">
+        @foreach (var item in @Model.patient) {
+            <tr>
+                <td>@Html.DisplayFor(pat => item.id)</td>
+                <td>@Html.DisplayFor(pat => item.name)</td>
+                <td>@Html.DisplayFor(pat => item.vorname)</td>
+                <td>@Html.DisplayFor(pat => item.zimmer)</td>
+                <td>@Html.DisplayFor(pat => item.eintrittDatum)</td>
+                <td>@Html.DisplayFor(pat => item.austrittDatum)</td>
+                <td>@Html.DisplayFor(pat => item.anamnese)</td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
