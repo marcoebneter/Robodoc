@@ -12,29 +12,33 @@
     <title>Therapien</title>
 </head>
 <body>
-<h1>Therapien</h1>
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Medikamente</th>
-        </tr>
-        </thead>
-        <tbody id="data" contenteditable="true" spellcheck="false">
-        @foreach (var item in @Model.therapien) {
-            <tr>
-                <td>@Html.DisplayFor(medi => item.id)</td>
-                <td>@Html.DisplayFor(medi => item.name)</td>
-                @foreach (var mt in item.medikamentTherapies)
+    <h1>Therapien</h1>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Medikamente</th>
+                </tr>
+            </thead>
+            <tbody id="data" contenteditable="true" spellcheck="false">
+                @foreach (var item in @Model.therapien)
                 {
-                    <td>@Html.DisplayFor(t => mt.medikament)</td>
+                    <tr>
+                        <td>@Html.DisplayFor(medi => item.id)</td>
+                        <td>@Html.DisplayFor(medi => item.name)</td>
+                        <td>
+                            @foreach (var mt in item.medikamentTherapies)
+                            {
+                                @Html.DisplayFor(t => mt.medikamentId)
+                                <br />
+                            }
+                        </td>
+                    </tr>
                 }
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

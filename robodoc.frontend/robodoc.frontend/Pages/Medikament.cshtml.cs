@@ -9,7 +9,7 @@ namespace robodoc.frontend.Pages
     public class MedikamentModel : PageModel
     {
         private static readonly HttpClient client = new HttpClient();
-        private const string apiRequest = "https://localhost:44391/api/Medikament";
+        private const string apiRequest = "https://localhost:7277/api/Medikament";
         public IEnumerable<Medikament>? medikament { get; set; }
         public async Task<IActionResult> OnGet()
         {

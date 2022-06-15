@@ -5,9 +5,7 @@ using AutoMapper;
 using FluentAssertions;
 using Moq;
 using robodoc.backend.Common;
-using robodoc.backend.Common.Mapper;
 using robodoc.backend.Controllers;
-using robodoc.backend.Controllers.DTO;
 using robodoc.backend.Services;
 using robodoc.backend.Services.Interfaces;
 using Robodoc.Data.Models;
@@ -34,7 +32,7 @@ namespace robodoc.backend.tests
                 }
             };
 
-            _mapper = new Mapper(new MapperConfiguration(conf => conf.AddProfile(typeof(MedikamentMapper))));
+            _mapper = new Mapper(new MapperConfiguration(conf => conf.AddProfile(typeof(Medikament))));
             _mock = new Mock<IRepository<Medikament>>();
             _mock.Setup(m => m.GetAll()).Returns(_medikaments);
             _mock.Setup(m => m.Get(It.IsNotNull<Guid>())).Returns(_medikaments);
@@ -75,12 +73,12 @@ namespace robodoc.backend.tests
         {
             // arrange
             var controller = new MedikamentController(_service, _mapper);
-            var newMedi = new MedikamentDTO()
+            var newMedi = new Medikament()
             {
                 Id = Guid.NewGuid(),
                 Name = "TestMedi",
-                Einheit = Einheiten.Kapseln.ToString(),
-                Verabreichungsprozess = "oral"
+                Einheit = Einheiten.Kapseln,
+                Verabreichungsprozess = Verabreichungsprozesse.oral
             };
 
             // act

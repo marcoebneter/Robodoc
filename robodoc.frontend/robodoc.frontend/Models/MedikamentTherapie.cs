@@ -4,7 +4,7 @@
     {
         public Guid id { get; set; }
         public int menge { get; set; }
-        public Guid medikament { get; set; }
-        public Guid therapie { get; set; }
+        public Guid medikamentId { get; set; }
+        public Guid therapieId { get; set; }
     }
 }

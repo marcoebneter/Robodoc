@@ -19,7 +19,7 @@ namespace robodoc.backend.Repositories
         public IEnumerable<Therapie> Get(Guid id)
         {
             return _dbContext.Therapien
-                .Where(t => t.Id.Equals(id));
+                .Where(t => t.Id.Equals(id)).Include(t => t.MedikamentTherapies);
         }
 
         public void Delete(Therapie entity)
