@@ -13,10 +13,10 @@ namespace robodoc.backend.Controllers
             switch (value)
             {
                 case "startRobo":
-                {
-                    MQTT.MqttPublish.Publish_Application_Message();
-                    break;
-                }
+                    {
+                        MQTT.MqttPublish.Publish_Application_Message();
+                        break;
+                    }
             }
         }
     }
