@@ -13,27 +13,31 @@
 </head>
 <body>
     <h1>Medikamente</h1>
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Einheit</th>
-            <th>Verabreichungsprozess</th>
-        </tr>
-        </thead>
-        <tbody id="data" spellcheck="false">
-        @foreach (var item in @Model.medikament) {
-            <tr>
-                <td>@Html.DisplayFor(medi => item.id)</td>
-                <td>@Html.DisplayFor(medi => item.name)</td>
-                <td>@Html.DisplayFor(medi => item.einheit)</td>
-                <td>@Html.DisplayFor(medi => item.verabreichungsprozess)</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Einheit</th>
+                    <th>Verabreichungsprozess</th>
+                </tr>
+            </thead>
+            <tbody id="data" spellcheck="false" contenteditable="true">
+                @foreach (var item in @Model.medikament)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(medi => item.id)</td>
+                        <td>@Html.DisplayFor(medi => item.name)</td>
+                        <td>@Html.DisplayFor(medi => item.einheit)</td>
+                        <td>@Html.DisplayFor(medi => item.verabreichungsprozess)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <form method="post" asp-page-handler="Update">
+        <input type="submit" value="Update" />
+    </form>
 </body>
 </html>
