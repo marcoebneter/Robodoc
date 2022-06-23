@@ -13,7 +13,7 @@ namespace robodoc.frontend.Pages
         private static readonly HttpClient client = new HttpClient();
         private const string apiRoboter = "https://localhost:7277/api/Robo";
 
-        public async Task<IActionResult> StartRobo()
+        public async Task<IActionResult> OnPostStartRobo()
         {
             await ApiRequest(apiRoboter, new StringContent("\"startRobo\"", Encoding.UTF8, "application/json"));
             return Page();
