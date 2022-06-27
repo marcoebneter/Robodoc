@@ -16,7 +16,6 @@ namespace robodoc.backend.Services
 
         public IEnumerable<Medikament> GetMedikaments()
         {
-            MQTT.MqttPublish.Publish_Application_Message().RunInBackground();
             return _repository.GetAll();
         }
 

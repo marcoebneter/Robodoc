@@ -118,7 +118,7 @@ namespace robodoc.backend
             }
 
             #region Patienten
-            patient.Add(new Patient() { Id = Guid.NewGuid(), Name = "Zingg", Vorname = "Joel", Anamnese = "isch en gaile siech", EintrittDatum = DateTime.Now });
+            patient.Add(new Patient() { Id = Guid.NewGuid(), Name = "Zingg", Vorname = "Joel", Anamnese = "Velounfall", EintrittDatum = DateTime.Now });
             #endregion
 
             foreach (Patient pat in patient)
